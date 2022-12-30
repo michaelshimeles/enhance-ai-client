@@ -42,7 +42,11 @@ export const Search = () => {
           />
           <input type="submit" className="search__button" />
         </form>
-        {result ? <h1>{result?.data?.choices[0].text}</h1> : <></>}
+        {result ? (
+          <h1 className="search__result">{result?.data?.choices[0].text}</h1>
+        ) : (
+          <></>
+        )}
         {isFetching ? (
           <div className="search__lottie">
             <Lottie
