@@ -25,12 +25,35 @@ export const Search = () => {
 
   console.log(errors);
 
+  // Put result in context and call it in home page
+
   return (
     <div className="search">
       <div className="search__container">
+        <div className="search__result-box">
+          {result ? (
+            <h1 className="search__result">{result?.data?.choices[0].text}</h1>
+          ) : (
+            <></>
+          )}
+          {isFetching && isLoading ? (
+            <div className="search__lottie">
+              <Lottie
+                animationData={thinking}
+                autoplay={true}
+                loop={true}
+                height={400}
+                width={400}
+              />
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
         <form onSubmit={handleSubmit(onSubmit)} className="search__form">
           <textarea
             className="search__input"
+            autoComplete="off"
             {...register("prompt", {
               required: "This is required",
               minLength: {
@@ -42,24 +65,6 @@ export const Search = () => {
           />
           <input type="submit" className="search__button" />
         </form>
-        {result ? (
-          <h1 className="search__result">{result?.data?.choices[0].text}</h1>
-        ) : (
-          <></>
-        )}
-        {isFetching && isLoading ? (
-          <div className="search__lottie">
-            <Lottie
-              animationData={thinking}
-              autoplay={true}
-              loop={true}
-              height={400}
-              width={400}
-            />
-          </div>
-        ) : (
-          <></>
-        )}
       </div>
     </div>
   );
