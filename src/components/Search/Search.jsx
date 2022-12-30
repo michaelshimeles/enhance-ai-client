@@ -20,7 +20,7 @@ export const Search = () => {
   };
 
   // Query result
-  const { data: result, isFetching } = useSearch(response);
+  const { data: result, isFetching, isLoading } = useSearch(response);
   console.log("Result", result?.data?.choices[0].text);
 
   console.log(errors);
@@ -38,7 +38,7 @@ export const Search = () => {
                 message: "Min length is 4",
               },
             })}
-            placeholder="Let me fix your grammar"
+            // placeholder="Let me fix your grammar"
           />
           <input type="submit" className="search__button" />
         </form>
@@ -47,7 +47,7 @@ export const Search = () => {
         ) : (
           <></>
         )}
-        {isFetching ? (
+        {isFetching && isLoading ? (
           <div className="search__lottie">
             <Lottie
               animationData={thinking}
