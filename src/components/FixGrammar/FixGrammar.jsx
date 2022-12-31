@@ -1,12 +1,13 @@
-import "./Search.scss";
+import "./FixGrammar.scss";
 import { useForm } from "react-hook-form";
 import { useSearch } from "../../hooks/useSearch";
 import { useState } from "react";
 import thinking from "../../assets/animations/thinking.json";
 import Lottie from "lottie-react";
 
-export const Search = () => {
+export const FixGrammar = () => {
   const [response, setResponse] = useState("");
+
   const {
     register,
     handleSubmit,

@@ -1,14 +1,61 @@
 .home {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: rgb(231, 231, 238);
   width: 100%;
-  padding-top: 5rem;
 
-  &__text {
-    color: rgb(183, 183, 192);
-    font-size: 3rem;
-    text-align: center;
+  &__container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 80%;
+  }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 80%;
+    padding: 2rem 0rem;
+  }
+
+  &__grammar {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: rgb(47, 48, 58);
+    width: 20%;
+    border-radius: 0.8rem;
+    text-decoration: none;
+    color: rgb(231, 231, 238);
+    &:hover {
+      border: 1px solid grey;
+    }
+  }
+
+  &__captions {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: rgb(47, 48, 58);
+    width: 20%;
+    border-radius: 0.8rem;
+    text-decoration: none;
+    color: rgb(231, 231, 238);
+    &:hover {
+      border: 1px solid grey;
+    }
+  }
+
+  &__title {
+    font-size: 1.125rem;
+  }
+
+  &__description {
+    font-size: 0.875rem;
+    color: rgb(231, 231, 238);
   }
 }

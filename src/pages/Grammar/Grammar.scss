@@ -1,0 +1,14 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-top: 5rem;
+
+  &__text {
+    color: rgb(183, 183, 192);
+    font-size: 3rem;
+    text-align: center;
+  }
+}
