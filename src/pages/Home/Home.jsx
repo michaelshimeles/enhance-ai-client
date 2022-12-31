@@ -19,7 +19,7 @@ export const Home = () => {
             <p>💬</p>
             <p className="home__title">Instagram Captions (soon)</p>
             <p className="home__description">
-              Create captions for an Instagram photo just by describing what the
+              Create captions for an Instagram post just by describing what the
               post is about
             </p>
           </div>
