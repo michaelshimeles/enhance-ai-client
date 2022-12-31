@@ -27,16 +27,16 @@ export const FixGrammar = () => {
   console.log(errors);
 
   return (
-    <div className="search">
-      <div className="search__container">
-        <div className="search__result-box">
+    <div className="fix-grammar">
+      <div className="fix-grammar__container">
+        <div className="fix-grammar__result-box">
           {result ? (
-            <h1 className="search__result">{result?.data?.choices[0].text}</h1>
+            <h1 className="fix-grammar__result">{result?.data?.choices[0].text}</h1>
           ) : (
             <></>
           )}
           {isFetching && isLoading ? (
-            <div className="search__lottie">
+            <div className="fix-grammar__lottie">
               <Lottie
                 animationData={thinking}
                 autoplay={true}
@@ -49,9 +49,9 @@ export const FixGrammar = () => {
             <></>
           )}
         </div>
-        <form onSubmit={handleSubmit(onSubmit)} className="search__form">
+        <form onSubmit={handleSubmit(onSubmit)} className="fix-grammar__form">
           <textarea
-            className="search__input"
+            className="fix-grammar__input"
             autoComplete="off"
             {...register("prompt", {
               required: "This is required",
@@ -62,7 +62,7 @@ export const FixGrammar = () => {
             })}
             // placeholder="Let me fix your grammar"
           />
-          <input type="submit" className="search__button" />
+          <input type="submit" className="fix-grammar__button" />
         </form>
       </div>
     </div>

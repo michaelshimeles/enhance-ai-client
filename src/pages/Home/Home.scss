@@ -8,6 +8,12 @@
   align-items: center;
   color: rgb(231, 231, 238);
   width: 100%;
+  padding: 5rem 0rem;
+
+  @include tablet {
+    padding-top: 5rem;
+  }
+
 
   &__container {
     display: flex;
