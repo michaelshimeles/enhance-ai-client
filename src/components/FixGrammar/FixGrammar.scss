@@ -1,3 +1,7 @@
+@use "/src/styles/partials/fonts" as *;
+@use "src/styles/partials/mixins" as *;
+@use "src/styles//partials/variables" as *;
+
 .search {
   display: flex;
   justify-content: center;

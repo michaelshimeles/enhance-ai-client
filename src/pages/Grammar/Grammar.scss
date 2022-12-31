@@ -1,3 +1,7 @@
+@use "/src/styles/partials/fonts" as *;
+@use "src/styles/partials/mixins" as *;
+@use "src/styles//partials/variables" as *;
+
 .home {
   display: flex;
   flex-direction: column;

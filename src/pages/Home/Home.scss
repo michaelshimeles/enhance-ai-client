@@ -1,3 +1,7 @@
+@use "/src/styles/partials/fonts" as *;
+@use "src/styles/partials/mixins" as *;
+@use "src/styles//partials/variables" as *;
+
 .home {
   display: flex;
   justify-content: center;
@@ -7,10 +11,19 @@
 
   &__container {
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    flex-wrap: wrap;
     width: 80%;
+    gap: 2rem;
+
+    @include desktop {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+      width: 80%;
+    }
   }
   &__info {
     display: flex;
@@ -19,7 +32,7 @@
     align-items: flex-start;
     gap: 1rem;
     width: 80%;
-    padding: 2rem 0rem;
+    padding: 3rem 0rem;
   }
 
   &__grammar {
@@ -27,10 +40,20 @@
     justify-content: center;
     align-items: flex-start;
     background-color: rgb(47, 48, 58);
-    width: 20%;
     border-radius: 0.8rem;
     text-decoration: none;
     color: rgb(231, 231, 238);
+
+    width: 100%;
+
+    @include tablet {
+      width: 40%;
+    }
+
+    @include desktop {
+      width: 30%;
+
+    }
     &:hover {
       border: 1px solid grey;
     }
@@ -41,10 +64,19 @@
     justify-content: center;
     align-items: flex-start;
     background-color: rgb(47, 48, 58);
-    width: 20%;
     border-radius: 0.8rem;
     text-decoration: none;
     color: rgb(231, 231, 238);
+    width: 100%;
+
+    @include tablet {
+      width: 40%;
+    }
+
+    @include desktop {
+      width: 30%;
+    }
+
     &:hover {
       border: 1px solid grey;
     }

@@ -26,8 +26,6 @@ export const FixGrammar = () => {
 
   console.log(errors);
 
-  // Put result in context and call it in home page
-
   return (
     <div className="search">
       <div className="search__container">
