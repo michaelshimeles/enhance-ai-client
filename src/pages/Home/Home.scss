@@ -14,7 +14,6 @@
     padding-top: 5rem;
   }
 
-
   &__container {
     display: flex;
     flex-direction: column;
@@ -49,7 +48,6 @@
     border-radius: 0.8rem;
     text-decoration: none;
     color: rgb(231, 231, 238);
-
     width: 100%;
 
     @include tablet {
@@ -58,10 +56,10 @@
 
     @include desktop {
       width: 30%;
-
     }
     &:hover {
-      border: 1px solid grey;
+      filter: drop-shadow(2px 2px 10px #000);
+      border: 1px solid 121212;
     }
   }
 
@@ -74,7 +72,6 @@
     text-decoration: none;
     color: rgb(231, 231, 238);
     width: 100%;
-
     @include tablet {
       width: 40%;
     }
@@ -84,7 +81,8 @@
     }
 
     &:hover {
-      border: 1px solid grey;
+      filter: drop-shadow(2px 2px 10px #000);
+      border: 1px solid 121212;
     }
   }
 
