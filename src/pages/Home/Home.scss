@@ -9,15 +9,15 @@
   align-items: center;
   color: rgb(231, 231, 238);
   width: 100%;
-  padding: 5rem 0rem;
-  gap: 3rem;
-
+  // padding: 5rem 0rem;
+  gap: 2rem;
+  
   @include tablet {
-    padding-top: 5rem;
+    // padding-top: 5rem;
   }
 
   @include desktop {
-    gap: 12rem;
+    // gap: 12rem;
   }
 
   &__container {
@@ -44,6 +44,10 @@
     gap: 1rem;
     width: 80%;
     padding: 3rem 0rem;
+  }
+
+  &__emoji {
+    font-size: 1.5rem;
   }
 
   &__grammar {

@@ -2,16 +2,21 @@
 @use "src/styles/partials/mixins" as *;
 @use "src/styles//partials/variables" as *;
 
-.grammar {
+.navbar {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
 
-  &__text {
-    color: rgb(183, 183, 192);
-    font-size: 3rem;
-    text-align: center;
+  &__container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 80%;
+    padding: 1rem 0rem;
+  }
+
+  &__img {
+    width: 2.5rem;
   }
 }
