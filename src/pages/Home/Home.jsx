@@ -1,5 +1,6 @@
 import "./Home.scss";
 import { Link } from "react-router-dom";
+import { SocialMedia } from "../../components/SocialMedia/SocialMedia";
 export const Home = () => {
   return (
     <div className="home">
@@ -35,6 +36,7 @@ export const Home = () => {
           </div>
         </Link>
       </div>
+      <SocialMedia />
     </div>
   );
 };

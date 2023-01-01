@@ -41,7 +41,7 @@ const InstagramCaptions = () => {
   const colorStyles = {
     control: (styles) => ({
       ...styles,
-      backgroundColor: "rgb(49, 49, 62)",
+      // backgroundColor: "rgb(49, 49, 62)",
       border: "none",
     }),
   };
