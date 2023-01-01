@@ -1,6 +1,6 @@
 import "./FixGrammar.scss";
 import { useForm } from "react-hook-form";
-import { useSearch } from "../../hooks/useSearch";
+import { useGrammar } from "../../hooks/useGrammar";
 import { useState } from "react";
 import thinking from "../../assets/animations/thinking.json";
 import Lottie from "lottie-react";
@@ -21,7 +21,7 @@ export const FixGrammar = () => {
   };
 
   // Query result
-  const { data: result, isFetching, isLoading } = useSearch(response);
+  const { data: result, isFetching, isLoading } = useGrammar(response);
   console.log("Result", result?.data?.choices[0].text);
 
   console.log(errors);
@@ -31,7 +31,9 @@ export const FixGrammar = () => {
       <div className="fix-grammar__container">
         <div className="fix-grammar__result-box">
           {result ? (
-            <h1 className="fix-grammar__result">{result?.data?.choices[0].text}</h1>
+            <h1 className="fix-grammar__result">
+              {result?.data?.choices[0].text}
+            </h1>
           ) : (
             <></>
           )}
@@ -54,7 +56,7 @@ export const FixGrammar = () => {
             className="fix-grammar__input"
             autoComplete="off"
             {...register("prompt", {
-              required: "This is required",
+              required: true,
               minLength: {
                 value: 4,
                 message: "Min length is 4",

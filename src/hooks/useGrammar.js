@@ -10,7 +10,7 @@ const fetchPromptResult = ({ queryKey }) => {
   });
 };
 
-export const useSearch = (prompt) => {
+export const useGrammar = (prompt) => {
   let result = false;
   if (prompt) {
     result = true;

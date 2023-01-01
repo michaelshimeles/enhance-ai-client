@@ -14,7 +14,7 @@ export const Home = () => {
             </p>
           </div>
         </Link>
-        <Link to="/" className="home__captions">
+        <Link to="/captions" className="home__captions">
           <div className="home__info">
             <p>💬</p>
             <p className="home__title">Instagram Captions (soon)</p>

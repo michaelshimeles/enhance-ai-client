@@ -58,8 +58,12 @@
       width: 30%;
     }
     &:hover {
-      filter: drop-shadow(2px 2px 10px #000);
       border: 1px solid 121212;
+
+      @include desktop {
+        border-radius: 0.8rem;
+        filter: drop-shadow(2px 2px 10px #000);
+      }
     }
   }
 
@@ -81,8 +85,11 @@
     }
 
     &:hover {
-      filter: drop-shadow(2px 2px 10px #000);
       border: 1px solid 121212;
+      @include desktop {
+        border-radius: 0.8rem;
+        filter: drop-shadow(2px 2px 10px #000);
+      }
     }
   }
 

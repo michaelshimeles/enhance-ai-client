@@ -1,8 +1,8 @@
 import InstagramCaptions from "../../components/InstagramCaptions/InstagramCaptions";
-
+import "./Captions.scss";
 export const Captions = () => {
   return (
-    <div>
+    <div className="captions">
       <InstagramCaptions />
     </div>
   );
