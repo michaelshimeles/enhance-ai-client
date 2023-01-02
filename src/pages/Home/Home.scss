@@ -26,6 +26,7 @@
     justify-content: space-evenly;
     align-items: center;
     width: 80%;
+    flex-wrap: wrap;
     gap: 2rem;
 
     @include desktop {

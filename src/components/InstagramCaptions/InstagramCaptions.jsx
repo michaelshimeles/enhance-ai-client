@@ -2,9 +2,11 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import Select from "react-select";
 import thinking from "../../assets/animations/thinking.json";
-import Lottie from "lottie-react";
 import "./InstagramCaptions.scss";
 import { useCaption } from "../../hooks/useCaption";
+import { LoadingAnimation } from "../LoadingAnimation/LoadingAnimation";
+import { InstagramResult } from "../InstagramResult/InstagramResult";
+
 const InstagramCaptions = () => {
   const [response, setResponse] = useState("");
   const [selectOptions, setSelectOptions] = useState("");
@@ -101,27 +103,18 @@ const InstagramCaptions = () => {
         </form>
         {/* <button onClick={handleRefresh}>Refresh</button> */}
         {isFetching && isLoading ? (
-          <div>
-            <Lottie
-              animationData={thinking}
-              autoplay={true}
-              loop={true}
-              height={400}
-              width={400}
-              className="ig-captions__lottie"
-            />
-          </div>
+          <LoadingAnimation
+            thinking={thinking}
+            className={"ig-captions__lottie"}
+          />
         ) : (
           <></>
         )}
         {result ? (
-          <div className="ig-captions__result">
-            <ol>
-              {newResult.slice(1).map((line, index) => (
-                <li key={index}>{line}</li>
-              ))}
-            </ol>
-          </div>
+          <InstagramResult
+            newResult={newResult}
+            className={"ig-captions__result"}
+          />
         ) : (
           <></>
         )}

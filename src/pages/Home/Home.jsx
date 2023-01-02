@@ -57,6 +57,17 @@ export const Home = () => {
             </p>
           </div>
         </Link>
+        <Link to="/" className="home__grammar">
+          <div className="home__info">
+            <p className="home__emoji">📩</p>
+            <p className="home__title">Cover Letter (Coming Soon)</p>
+            <p className="home__description">
+              Transform your job search with our AI-powered cover letter
+              generator, crafting unique and professional letters in a matter of
+              seconds!
+            </p>
+          </div>
+        </Link>
       </div>
       <SocialMedia />
     </div>
