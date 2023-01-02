@@ -29,6 +29,13 @@ const InstagramCaptions = () => {
     { value: "Funny", label: "Funny" },
     { value: "Serious", label: "Serious" },
     { value: "Funny With Puns", label: "Funny with Puns" },
+    { value: "Friendly", label: "Friendly" },
+    { value: "Luxury", label: "Luxury" },
+    { value: "Professional", label: "Professional" },
+    { value: "Bold", label: "Bold" },
+    { value: "Adventures", label: "Adventures" },
+    { value: "Persuasive", label: "Persuasive" },
+    { value: "Empathetic", label: "Empathetic" },
   ];
 
   const handleSelect = (data) => {
