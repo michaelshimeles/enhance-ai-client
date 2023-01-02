@@ -40,10 +40,12 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 0.5rem;
+    padding: 0.8rem;
     background-color: rgb(49, 49, 62);
     border: none;
     color: white;
+    background-color: rgb(49, 49, 62);
+    border-radius: .125rem;
   }
 
   &__description {
@@ -52,10 +54,12 @@
     align-items: center;
     width: 100%;
     padding: 0.5rem;
-    height: 10rem;
+    height: 5rem;
     background-color: rgb(49, 49, 62);
     border: none;
     color: white;
+    background-color: rgb(49, 49, 62);
+    border-radius: .125rem;
   }
 
   &__submit {
@@ -66,6 +70,9 @@
     border: none;
     width: 100%;
     height: 2rem;
+    cursor: pointer;
+    border-radius: .125rem;
+
   }
 
   &__select {

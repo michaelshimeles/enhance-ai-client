@@ -62,7 +62,6 @@ export const FixGrammar = () => {
                 message: "Min length is 4",
               },
             })}
-            // placeholder="Let me fix your grammar"
           />
           <input type="submit" className="fix-grammar__button" />
         </form>
