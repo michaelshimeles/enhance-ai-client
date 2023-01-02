@@ -26,6 +26,7 @@ const InstagramCaptions = () => {
     { value: "Witty", label: "Witty" },
     { value: "Funny", label: "Funny" },
     { value: "Serious", label: "Serious" },
+    { value: "With Puns", label: "Pun" },
   ];
 
   const handleSelect = (data) => {
@@ -33,9 +34,15 @@ const InstagramCaptions = () => {
     setSelectOptions(data.value);
   };
 
+  // const handleRefresh = () => {
+  //   setRefresh(true);
+  // };
+
   // Query result
   const { data: result, isFetching, isLoading } = useCaption(response);
-  console.log("Result", result?.data?.choices[0].text);
+
+  // Formatted result
+  const newResult = result?.data?.choices[0].text.split(/\s\d+\.\s/);
 
   const colorStyles = {
     control: (styles) => ({
@@ -92,6 +99,7 @@ const InstagramCaptions = () => {
             className="ig-captions__submit"
           />
         </form>
+        {/* <button onClick={handleRefresh}>Refresh</button> */}
         {isFetching && isLoading ? (
           <div>
             <Lottie
@@ -107,7 +115,13 @@ const InstagramCaptions = () => {
           <></>
         )}
         {result ? (
-          <p className="ig-captions__result">{result?.data?.choices[0].text}</p>
+          <div className="ig-captions__result">
+            <ol>
+              {newResult.slice(1).map((line, index) => (
+                <li key={index}>{line}</li>
+              ))}
+            </ol>
+          </div>
         ) : (
           <></>
         )}

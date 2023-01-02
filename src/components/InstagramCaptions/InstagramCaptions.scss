@@ -45,7 +45,7 @@
     border: none;
     color: white;
     background-color: rgb(49, 49, 62);
-    border-radius: .125rem;
+    border-radius: 0.125rem;
   }
 
   &__description {
@@ -59,7 +59,7 @@
     border: none;
     color: white;
     background-color: rgb(49, 49, 62);
-    border-radius: .125rem;
+    border-radius: 0.125rem;
   }
 
   &__submit {
@@ -71,8 +71,7 @@
     width: 100%;
     height: 2rem;
     cursor: pointer;
-    border-radius: .125rem;
-
+    border-radius: 0.125rem;
   }
 
   &__select {
@@ -88,6 +87,13 @@
     justify-content: center;
     align-items: center;
     color: white;
+    > ol {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 1rem;
+    }
   }
 
   &__label {
