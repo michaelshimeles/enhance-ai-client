@@ -2,10 +2,27 @@ import "./Home.scss";
 import { Link } from "react-router-dom";
 import { SocialMedia } from "../../components/SocialMedia/SocialMedia";
 import { NavBar } from "../../components/NavBar/NavBar";
+import Typewriter from "typewriter-effect";
+
 export const Home = () => {
   return (
     <div className="home">
       <NavBar />
+      <Typewriter
+        onInit={(typewriter) => {
+          typewriter
+            .typeString("EnhanceAI")
+            .pause(2000)
+            .deleteAll()
+            .typeString("Enhance Your Grammar")
+            .pause(2000)
+            .deleteAll()
+            .typeString("Enhance Your IG Captions")
+            .deleteAll()
+            .typeString("EnhanceAI")
+            .start();
+        }}
+      />
       <div className="home__container">
         <Link to="/grammar" className="home__grammar">
           <div className="home__info">

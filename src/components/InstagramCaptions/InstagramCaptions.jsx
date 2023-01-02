@@ -3,7 +3,6 @@ import { useState } from "react";
 import Select from "react-select";
 import thinking from "../../assets/animations/thinking.json";
 import Lottie from "lottie-react";
-import Typewriter from "typewriter-effect";
 import "./InstagramCaptions.scss";
 import { useCaption } from "../../hooks/useCaption";
 const InstagramCaptions = () => {
@@ -108,14 +107,8 @@ const InstagramCaptions = () => {
           <></>
         )}
         {result ? (
-          <Typewriter
-            className="ig-captions__result"
-            onInit={(typewriter) => {
-              typewriter.typeString(result?.data?.choices[0].text).start();
-            }}
-          />
+          <p className="ig-captions__result">{result?.data?.choices[0].text}</p>
         ) : (
-          // <p className="ig-captions__result">{result?.data?.choices[0].text}</p>
           <></>
         )}
       </div>
