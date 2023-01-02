@@ -26,7 +26,7 @@ const InstagramCaptions = () => {
     { value: "Witty", label: "Witty" },
     { value: "Funny", label: "Funny" },
     { value: "Serious", label: "Serious" },
-    { value: "With Puns", label: "Pun" },
+    { value: "Funny With Puns", label: "Funny with Puns" },
   ];
 
   const handleSelect = (data) => {
