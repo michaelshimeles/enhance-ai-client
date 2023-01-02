@@ -84,7 +84,7 @@
 
   &__result {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     color: white;
     width: 100%;
@@ -97,9 +97,12 @@
       justify-content: center;
       align-items: flex-start;
       gap: 1rem;
-      padding-left: 1.25rem;
+      padding-left: 0rem;
       @include desktop {
-        padding-left: 1.25rem;
+        // padding: 2rem;
+        gap: 3em;
+        // padding-left: 1.25rem;
+        width: 100%;
       }
     }
   }

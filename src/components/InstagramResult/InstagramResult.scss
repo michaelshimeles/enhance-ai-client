@@ -1,0 +1,22 @@
+@use "/src/styles/partials/fonts" as *;
+@use "src/styles/partials/mixins" as *;
+@use "src/styles//partials/variables" as *;
+
+.ig-result {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #242526;
+  padding: 1.5rem 4rem;
+  border-top: 2px solid #242526;
+  border-bottom: 2px solid #242526;
+  gap: 1rem;
+  width: 100%;
+
+
+  &__button {
+    border: none;
+    padding: 0.5rem 2rem;
+  }
+}
