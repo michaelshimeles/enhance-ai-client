@@ -13,7 +13,7 @@ export const SocialMedia = () => {
         <img src={github} alt="github link" className="social-media__github" />
       </a>
       <a
-        href="https://github.com/michaelshimeles"
+        href="https://www.linkedin.com/in/michaelshimeles/"
         target="_blank"
         rel="noopener noreferrer"
       >

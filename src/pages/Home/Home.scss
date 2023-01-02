@@ -127,4 +127,8 @@
   @include tablet {
     font-size: 2rem;
   }
+
+  @include desktop {
+    font-size: 3rem;
+  }
 }
