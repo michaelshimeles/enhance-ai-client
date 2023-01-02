@@ -84,15 +84,23 @@
 
   &__result {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     color: white;
+    width: 100%;
+    @include tablet {
+      width: 60%;
+    }
     > ol {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
       gap: 1rem;
+      padding-left: 1.25rem;
+      @include desktop {
+        padding-left: 1.25rem;
+      }
     }
   }
 

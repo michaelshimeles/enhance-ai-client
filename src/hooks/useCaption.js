@@ -19,5 +19,9 @@ export const useCaption = (data) => {
   }
   return useQuery(["caption", data], fetchCaptionResult, {
     enabled: result,
+    refetchInterval: 100000,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+    refetchIntervalInBackground: 100000,
   });
 };
