@@ -9,18 +9,15 @@ export const Home = () => {
     <div className="home">
       <NavBar />
       <Typewriter
-        onInit={(typewriter) => {
-          typewriter
-            .typeString("EnhanceAI")
-            .pause(2000)
-            .deleteAll()
-            .typeString("Enhance Your Grammar")
-            .pause(2000)
-            .deleteAll()
-            .typeString("Enhance Your IG Captions")
-            .deleteAll()
-            .typeString("EnhanceAI")
-            .start();
+        options={{
+          strings: [
+            "Enhance AI",
+            "Enhance Grammar",
+            "Enhance IG Captions",
+            "Enhance Resume",
+          ],
+          autoStart: true,
+          loop: true,
         }}
       />
       <div className="home__container">
