@@ -8,11 +8,17 @@
   justify-content: center;
   align-items: center;
   background-color: #242526;
-  padding: 1.5rem 4rem;
+  padding: 1.5rem 1rem;
+
   border-top: 2px solid #242526;
   border-bottom: 2px solid #242526;
   gap: 1rem;
   width: 100%;
+  box-shadow: 5px 5px 10px 1px #000;
+
+  @include desktop {
+    padding: 1.5rem 2rem;
+  }
 
   &__button {
     border: none;
