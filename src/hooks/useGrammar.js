@@ -1,5 +1,5 @@
-import { useQuery } from "react-query";
-import axios from "axios";
+import { useQuery } from 'react-query';
+import axios from 'axios';
 
 const fetchPromptResult = ({ queryKey }) => {
   const prompt = queryKey[1];
@@ -10,12 +10,16 @@ const fetchPromptResult = ({ queryKey }) => {
   });
 };
 
-export const useGrammar = (prompt) => {
+export const useGrammar = prompt => {
   let result = false;
   if (prompt) {
     result = true;
   }
-  return useQuery(["prompt", prompt], fetchPromptResult, {
+  return useQuery(['prompt', prompt], fetchPromptResult, {
     enabled: result,
+    refetchInterval: 100000000,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+    refetchIntervalInBackground: 10000000,
   });
 };
