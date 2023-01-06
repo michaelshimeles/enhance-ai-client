@@ -6,7 +6,7 @@ import { Link as ReachLink } from 'react-router-dom';
 export const NavBar = () => {
   return (
     <Flex justifyContent="center" alignItems="center" w="100%" py="1rem">
-      <Flex justifyContent="flex-start" alignItems="center" w="80%">
+      <Flex justifyContent="space-between" alignItems="center" w="80%">
         <Link as={ReachLink} to="/" _hover={{ textDecoration: 'none' }}>
           <Image src={logo} alt="Enhance AI logo" w="2.5rem" />
         </Link>
