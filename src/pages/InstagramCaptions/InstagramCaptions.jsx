@@ -17,7 +17,7 @@ export const InstagramCaptions = () => {
     <Layout>
       <Flex direction="column" justify="center" align="center" pb="5rem">
         <NavBar />
-        <Heading pb="1rem">Caption Generator</Heading>
+        <Heading py="1rem">Caption Generator</Heading>
         <Box
           direction="column"
           justify="center"
