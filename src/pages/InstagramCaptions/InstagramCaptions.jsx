@@ -17,7 +17,7 @@ export const InstagramCaptions = () => {
     <Layout>
       <Flex direction="column" justify="center" align="center" pb="5rem">
         <NavBar />
-        <Heading pb="1rem">Caption Generator 💬</Heading>
+        <Heading pb="1rem">Caption Generator</Heading>
         <Box
           direction="column"
           justify="center"
@@ -26,7 +26,7 @@ export const InstagramCaptions = () => {
           pt="2rem"
         >
           <Tabs variant="soft-rounded">
-            <TabList>
+            <TabList p="1rem">
               <Tab>Product</Tab>
               <Tab isDisabled>Generic</Tab>
               <Tab isDisabled>Enhancer</Tab>
