@@ -6,6 +6,7 @@ import { igCaption } from '../../info/InstagramCaptions';
 import { fixGrammar } from '../../info/FixGrammar';
 import { resumeBuilder } from '../../info/ResumeBuilder';
 import { Layout } from '../../components/Layout/Layout';
+
 export const Home = () => {
   return (
     <Layout>

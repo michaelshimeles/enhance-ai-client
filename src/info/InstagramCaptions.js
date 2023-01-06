@@ -1,4 +1,4 @@
-import ig from '../assets/images/ig.jpg';
+// import ig from '../assets/images/ig.jpg';
 
 export const igCaption = {
   title: 'Caption Generator',
@@ -6,7 +6,8 @@ export const igCaption = {
             AI-powered system, taking the hassle out of coming up with
             creative captions.`,
   cta: "Let's Caption",
-  image: ig,
+  image:
+    'https://images.unsplash.com/photo-1611262588024-d12430b98920?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80',
   launched: true,
-  link: "/captions"
+  link: '/captions',
 };
