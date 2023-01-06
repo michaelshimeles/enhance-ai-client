@@ -34,7 +34,7 @@ export const CaptionForm = () => {
       direction="column"
       justify="center"
       align="center"
-      w={['80%', '80%', '80%', '50%']}
+      // w="100%"
       gap="0.5rem"
     >
       <form
