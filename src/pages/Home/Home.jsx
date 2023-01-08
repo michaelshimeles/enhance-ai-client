@@ -23,7 +23,7 @@ export const Home = () => {
         <NavBar />
         <HeroSection />
         <Hide below="lg">
-          <Tabs variant="soft-rounded" colorScheme="green" w="80%">
+          <Tabs variant="soft-rounded" colorScheme="blue" w="80%">
             <TabList>
               <Tab>Stacked</Tab>
               <Tab>Card</Tab>
