@@ -10,21 +10,15 @@ import {
 import { Link as ReachLink } from 'react-router-dom';
 
 export const NewCard = ({ image, description, title, link, cta, launched }) => {
-  const bgColor = useColorModeValue('white', 'black');
+  const bgColor = useColorModeValue('white', 'blackAlpha.700');
 
   return (
     <Link as={ReachLink} to={link} _hover={{ textDecoration: 'none' }}>
-      <Flex
-        alignItems="center"
-        justifyContent="center"
-        maxW="sm"
-        bgColor={bgColor}
-      >
+      <Flex alignItems="center" justifyContent="center" maxW="sm">
         <Box
           mx="auto"
           rounded="lg"
-          shadow="md"
-          // bg="white"
+          shadow="2xl"
           _dark={{
             bg: 'gray.800',
           }}
@@ -39,7 +33,7 @@ export const NewCard = ({ image, description, title, link, cta, launched }) => {
             alt="Article"
           />
 
-          <Box p={6}>
+          <Box p={6} bgColor={bgColor} borderBottomRadius="5px">
             <Box>
               <chakra.span
                 fontSize="xs"
