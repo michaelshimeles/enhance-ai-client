@@ -13,7 +13,7 @@ export const NewCard = ({ image, description, title, link, cta, launched }) => {
   const bgColor = useColorModeValue('white', 'blackAlpha.700');
 
   return (
-    <Link as={ReachLink} to={link} _hover={{ textDecoration: 'none' }}>
+    <Link as={ReachLink} to={link} _hover={{ textDecoration: 'none' }} p="1rem">
       <Flex alignItems="center" justifyContent="center" maxW="sm">
         <Box
           mx="auto"
