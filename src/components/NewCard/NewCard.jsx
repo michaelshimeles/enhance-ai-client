@@ -6,15 +6,23 @@ import {
   chakra,
   Badge,
   useColorModeValue,
-  Text
+  Text,
 } from '@chakra-ui/react';
 import { Link as ReachLink } from 'react-router-dom';
+import { auth } from '../../Firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 export const NewCard = ({ image, description, title, link, cta, launched }) => {
   const bgColor = useColorModeValue('white', 'blackAlpha.700');
+  const [user] = useAuthState(auth);
 
   return (
-    <Link as={ReachLink} to={link} _hover={{ textDecoration: 'none' }} p="1rem">
+    <Link
+      as={ReachLink}
+      to={user ? link : `/signup?returnUrl=${link}`}
+      _hover={{ textDecoration: 'none' }}
+      p="1rem"
+    >
       <Flex alignItems="center" justifyContent="center" maxW="sm">
         <Box
           mx="auto"
