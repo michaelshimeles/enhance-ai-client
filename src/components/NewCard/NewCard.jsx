@@ -71,7 +71,7 @@ export const NewCard = ({ image, description, title, link, cta, launched }) => {
                   textDecoration: 'none',
                 }}
               > */}
-              <Text>{title}</Text>
+              <Text fontWeight="bold">{title}</Text>
               {/* </Link> */}
               <chakra.p
                 mt={2}
