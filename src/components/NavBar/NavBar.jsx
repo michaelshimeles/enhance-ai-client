@@ -1,12 +1,12 @@
-import { Button, Flex, Image, Link, Text } from '@chakra-ui/react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { Flex, Image, Link } from '@chakra-ui/react';
+// import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link as ReachLink } from 'react-router-dom';
 import logo from '../../assets/logo/logo.png';
 import { ColorModeSwitcher } from '../../ColorModeSwitcher';
-import { auth } from '../../Firebase';
+// import { auth } from '../../Firebase';
 
 export const NavBar = () => {
-  const [user] = useAuthState(auth);
+  // const [user] = useAuthState(auth);
 
   return (
     <Flex justifyContent="center" alignItems="center" w="100%" py="1rem">
@@ -15,7 +15,7 @@ export const NavBar = () => {
           <Image src={logo} alt="Enhance AI logo" w="2.5rem" />
         </Link>
         <Flex justify="center" align="center">
-          {!user && (
+          {/* {!user && (
             <Link
               as={ReachLink}
               to="/signup"
@@ -25,8 +25,8 @@ export const NavBar = () => {
                 <Text>Get Access</Text>
               </Button>
             </Link>
-          )}
-          {user && (
+          )} */}
+          {/* {user && (
             <Link
               as={ReachLink}
               to="/dashboard"
@@ -40,7 +40,7 @@ export const NavBar = () => {
                 alt="profile pic"
               />
             </Link>
-          )}
+          )} */}
           <ColorModeSwitcher />
         </Flex>
       </Flex>

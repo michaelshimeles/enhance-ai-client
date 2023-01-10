@@ -15,11 +15,11 @@ import {
   HStack,
 } from '@chakra-ui/react';
 import { Link as ReachLink } from 'react-router-dom';
-import { auth } from '../../Firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
+// import { auth } from '../../Firebase';
+// import { useAuthState } from 'react-firebase-hooks/auth';
 
 export const CardAI = ({ title, description, cta, image, launched, link }) => {
-  const [user] = useAuthState(auth);
+  // const [user] = useAuthState(auth);
 
   return (
     <Flex justify="center" align="center" w="90%">
@@ -38,7 +38,8 @@ export const CardAI = ({ title, description, cta, image, launched, link }) => {
             <VStack>
               <Link
                 as={ReachLink}
-                to={user ? link : `/signup?returnUrl=${link}`}
+                // to={user ? link : `/signup?returnUrl=${link}`}
+                to={link}
                 _hover={{ textDecoration: 'none' }}
               >
                 <Button variant="solid" colorScheme="blue" mt="1rem">
@@ -77,7 +78,8 @@ export const CardAI = ({ title, description, cta, image, launched, link }) => {
             <CardFooter>
               <Link
                 as={ReachLink}
-                to={user ? link : `/signup?returnUrl=${link}`}
+                // to={user ? link : `/signup?returnUrl=${link}`}
+                to={link}
                 _hover={{ textDecoration: 'none' }}
               >
                 <Button variant="solid" colorScheme="blue">
