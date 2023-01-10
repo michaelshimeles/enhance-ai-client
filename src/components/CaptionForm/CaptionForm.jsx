@@ -22,7 +22,7 @@ export const CaptionForm = () => {
   };
 
   // Query result
-  const { data: result, isLoading } = useCaption(response);
+  const { data: result, isLoading, refetch, isRefetching } = useCaption(response);
 
   // Formatted result
   const newResult = result?.data?.choices[0].text.split(/\s\d+\.\s/);
@@ -100,14 +100,22 @@ export const CaptionForm = () => {
             <option value="Empathetic">Empathetic</option>
           </Select>
         </Flex>
-        <Flex direction="column" justify="center" align="flex-start" w="full">
+        <Flex justify="space-between" align="center" w="full">
           <Button isLoading={isLoading} type="submit" colorScheme="blue">
             Submit
           </Button>
+          {newResult ? (
+            <Button isLoading={isRefetching} colorScheme="green" onClick={refetch}>
+              Refresh
+            </Button>
+          ) : (
+            <></>
+          )}
         </Flex>
       </form>
       {newResult ? (
         newResult.slice(1).map((line, index) => {
+          console.log(line);
           return <CaptionResult result={line} key={index} />;
         })
       ) : (
