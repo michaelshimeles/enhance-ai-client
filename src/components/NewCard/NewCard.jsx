@@ -6,6 +6,7 @@ import {
   chakra,
   Badge,
   useColorModeValue,
+  Text
 } from '@chakra-ui/react';
 import { Link as ReachLink } from 'react-router-dom';
 
@@ -45,7 +46,7 @@ export const NewCard = ({ image, description, title, link, cta, launched }) => {
               >
                 {cta}
               </chakra.span>
-              <Link
+              {/* <Link
                 as={ReachLink}
                 display="block"
                 color="gray.800"
@@ -60,9 +61,9 @@ export const NewCard = ({ image, description, title, link, cta, launched }) => {
                   textDecor: 'underline',
                   textDecoration: 'none',
                 }}
-              >
-                {title}
-              </Link>
+              > */}
+              <Text>{title}</Text>
+              {/* </Link> */}
               <chakra.p
                 mt={2}
                 fontSize="sm"

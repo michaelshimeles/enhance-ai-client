@@ -1,0 +1,33 @@
+import { Button, Heading, Progress } from '@chakra-ui/react';
+import { Layout } from '../../components/Layout/Layout';
+import { NavBar } from '../../components/NavBar/NavBar';
+import { auth } from '../../Firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+
+export const ProfileDashboard = () => {
+  const [user, loading] = useAuthState(auth);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (loading && !user) {
+      return (
+        <Layout>
+          <Progress size="xs" isIndeterminate />
+        </Layout>
+      );
+    } else if (!loading && !user) {
+      return navigate('/');
+    }
+    // eslint-disable-next-line
+  }, [user, loading]);
+
+  return !user ? null : (
+    <Layout>
+      <NavBar />
+      <Heading>Welcome {user.displayName}</Heading>
+      <Button onClick={() => auth.signOut()}>Sign Out</Button>
+    </Layout>
+  );
+};
