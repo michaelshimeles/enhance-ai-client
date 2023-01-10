@@ -1,4 +1,11 @@
-import { Flex, Image, Link } from '@chakra-ui/react';
+import {
+  Button,
+  Flex,
+  Image,
+  Link,
+  Hide,
+  useColorModeValue,
+} from '@chakra-ui/react';
 // import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link as ReachLink } from 'react-router-dom';
 import logo from '../../assets/logo/logo.png';
@@ -7,6 +14,7 @@ import { ColorModeSwitcher } from '../../ColorModeSwitcher';
 
 export const NavBar = () => {
   // const [user] = useAuthState(auth);
+  const bgColor = useColorModeValue('white', 'blackAlpha.700');
 
   return (
     <Flex justifyContent="center" alignItems="center" w="100%" py="1rem">
@@ -41,6 +49,24 @@ export const NavBar = () => {
               />
             </Link>
           )} */}
+          <Hide below="lg">
+            <Flex gap="1rem">
+              <Link
+                as={ReachLink}
+                to="/captions"
+                _hover={{ textDecoration: 'none' }}
+              >
+                <Button bgColor={bgColor}>💬 Caption Generator</Button>
+              </Link>
+              <Link
+                as={ReachLink}
+                to="/grammar"
+                _hover={{ textDecoration: 'none' }}
+              >
+                <Button bgColor={bgColor}>📝 Grammar Fixer</Button>
+              </Link>
+            </Flex>
+          </Hide>
           <ColorModeSwitcher />
         </Flex>
       </Flex>
