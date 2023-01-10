@@ -19,7 +19,7 @@ import { auth } from '../../Firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 export const CardAI = ({ title, description, cta, image, launched, link }) => {
-  const [user, loading] = useAuthState(auth);
+  const [user] = useAuthState(auth);
 
   return (
     <Flex justify="center" align="center" w="90%">
