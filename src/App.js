@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { Login } from './pages/Login/Login';
 import { SignUp } from './pages/SignUp/SignUp';
 import { ProfileDashboard } from './pages/ProfileDashboard/ProfileDashboard';
+import { PrivacyPolicy } from './pages/PrivacyPolicy/PrivacyPolicy';
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/dashboard" element={<ProfileDashboard />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
         </Routes>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
