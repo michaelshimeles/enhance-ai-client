@@ -1,4 +1,4 @@
-import { Button, Heading, Progress } from '@chakra-ui/react';
+import { Button, Heading, Progress, VStack } from '@chakra-ui/react';
 import { Layout } from '../../components/Layout/Layout';
 import { NavBar } from '../../components/NavBar/NavBar';
 import { auth } from '../../Firebase';
@@ -26,8 +26,10 @@ export const ProfileDashboard = () => {
   return !user ? null : (
     <Layout>
       <NavBar />
-      <Heading>Welcome {user.displayName}</Heading>
-      <Button onClick={() => auth.signOut()}>Sign Out</Button>
+      <VStack>
+        <Heading>Welcome {user.displayName}</Heading>
+        <Button onClick={() => auth.signOut()}>Sign Out</Button>
+      </VStack>
     </Layout>
   );
 };
