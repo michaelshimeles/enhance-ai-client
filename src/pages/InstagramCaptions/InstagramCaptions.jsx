@@ -11,6 +11,7 @@ import {
 import { CaptionForm } from '../../components/CaptionForm/CaptionForm';
 import { Layout } from '../../components/Layout/Layout';
 import { NavBar } from '../../components/NavBar/NavBar';
+import { GenericCaption } from '../../components/GenericCaption/GenericCaption';
 
 export const InstagramCaptions = () => {
   return (
@@ -28,7 +29,7 @@ export const InstagramCaptions = () => {
           <Tabs variant="soft-rounded">
             <TabList p="1rem">
               <Tab>Product</Tab>
-              <Tab isDisabled>Generic</Tab>
+              <Tab>Generic</Tab>
               <Tab isDisabled>Enhancer</Tab>
             </TabList>
             <TabPanels>
@@ -36,7 +37,7 @@ export const InstagramCaptions = () => {
                 <CaptionForm />
               </TabPanel>
               <TabPanel>
-                <p>two!</p>
+                <GenericCaption />
               </TabPanel>
               <TabPanel>
                 <p>three!</p>
