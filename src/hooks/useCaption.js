@@ -3,7 +3,6 @@ import axios from 'axios';
 
 const fetchCaptionResult = ({ queryKey }) => {
   const data = queryKey[1];
-  console.log("URL", `${process.env.REACT_APP_URL}`);
   return axios.get(`${process.env.REACT_APP_URL}/captions`, {
     params: {
       product: data.product,

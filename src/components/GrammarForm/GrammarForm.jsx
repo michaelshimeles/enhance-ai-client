@@ -9,12 +9,10 @@ export const GrammarForm = () => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = data => {
-    console.log('The input', data);
     setResponse(data.prompt);
   };
 
   const { data: result, isLoading } = useGrammar(response);
-  console.log('Result', result?.data?.choices[0].text);
 
   return (
     <Flex
