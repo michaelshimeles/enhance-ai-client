@@ -1,4 +1,4 @@
-import { Button, Input, VStack } from '@chakra-ui/react';
+import { Button, Input, VStack, Box } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHashtag } from '../../hooks/useHashtag';
@@ -40,7 +40,7 @@ export const HashtagGenerator = () => {
           </Button>
         </VStack>
       </form>
-      {newResult && <CaptionResult result={newResult} />}
+      {newResult && <Box pt="1rem"><CaptionResult result={newResult} /></Box>}
     </VStack>
   );
 };

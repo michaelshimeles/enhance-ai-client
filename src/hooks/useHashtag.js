@@ -2,20 +2,20 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 
 const fetchHashtags = ({ queryKey }) => {
-  const niche = queryKey[1];
+  const data = queryKey[1];
   return axios.get(`${process.env.REACT_APP_URL}/captions/hashtags`, {
     params: {
-      niche: niche,
+      niche: data.niche,
     },
   });
 };
 
-export const useHashtag = niche => {
+export const useHashtag = data => {
   let result = false;
-  if (niche) {
+  if (data) {
     result = true;
   }
-  return useQuery(['hashtags', niche], fetchHashtags, {
+  return useQuery(['hashtags', data], fetchHashtags, {
     enabled: result,
     refetchInterval: 100000000,
     refetchOnWindowFocus: false,
