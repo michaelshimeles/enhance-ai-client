@@ -1,9 +1,4 @@
-import {
-    Button,
-    Flex,
-    FormLabel, Select,
-    Textarea
-} from '@chakra-ui/react';
+import { Button, Flex, FormLabel, Select, Textarea } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useGenericCaption } from '../../hooks/useGenericCaption';
@@ -32,34 +27,21 @@ export const GenericCaption = () => {
 
   console.log(newResult);
   return (
-    <Flex
-      direction="column"
-      justify="center"
-      align="center"
-      // w="100%"
-      gap="0.5rem"
-    >
+    <Flex direction="column" justify="center" align="center" gap="0.5rem">
       <form
         onSubmit={handleSubmit(onSubmit)}
         style={{
           width: '100%',
         }}
       >
-        <Flex
-          direction="column"
-          justify="center"
-          align="flex-start"
-          w="full"
-          py="1rem"
-        >
+        <Flex direction="column" justify="center" align="flex-start" w="full">
           <FormLabel>Enter Generic Caption</FormLabel>
           <Textarea
             type="text"
-            // placeholder="Mini description of product / service..."
             {...register('description', {
               required: true,
             })}
-            placeholder="Our Taco Platter contains the best and freshest chicken, salsa, cheese and sour cream. Come try it out at Baro for a limited time only."
+            placeholder="Honestly you can write whatever caption you want here. Be free fam."
           />
         </Flex>
         <Flex
@@ -72,11 +54,9 @@ export const GenericCaption = () => {
           <FormLabel>Pick social platform</FormLabel>
           <Select
             type="select"
-            // placeholder="Mini description of product / service..."
             {...register('platform', {
               required: true,
             })}
-            // placeholder="Pick the social platform"
             name="tone"
             id="tone"
           >
@@ -84,13 +64,7 @@ export const GenericCaption = () => {
             <option value="facebook">facebook</option>
           </Select>
         </Flex>
-        <Flex
-          direction="column"
-          justify="center"
-          align="flex-start"
-          w="full"
-          py="1rem"
-        >
+        <Flex direction="column" justify="center" align="flex-start" w="full">
           <FormLabel>Pick the tone</FormLabel>
           <Select
             type="select"
@@ -98,9 +72,9 @@ export const GenericCaption = () => {
             {...register('tone', {
               required: true,
             })}
-            placeholder="Pick the tone"
             name="tone"
             id="tone"
+            pb="1rem"
           >
             <option value="Witty">Witty</option>
             <option value="Funny">Funny</option>
