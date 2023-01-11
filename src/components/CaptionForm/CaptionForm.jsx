@@ -84,9 +84,10 @@ export const CaptionForm = () => {
             {...register('tone', {
               required: true,
             })}
-            placeholder="Pick the tone"
+            placeholder="Tone of caption"
             name="tone"
             id="tone"
+            isRequired={true}
           >
             <option value="Witty">Witty</option>
             <option value="Funny">Funny</option>

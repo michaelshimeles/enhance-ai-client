@@ -1,4 +1,13 @@
-import { Button, Flex, Hide, HStack, Link, Show, Text, VStack } from '@chakra-ui/react';
+import {
+  Button,
+  Flex,
+  Hide,
+  HStack,
+  Link,
+  Show,
+  Text,
+  VStack,
+} from '@chakra-ui/react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { HeroSection } from '../../components/HeroSection/HeroSection';
 import { Layout } from '../../components/Layout/Layout';
@@ -11,45 +20,10 @@ import { resumeBuilder } from '../../info/ResumeBuilder';
 export const Home = () => {
   return (
     <Layout>
-      <Flex direction="column" justify="center" align="center" w="full">
+      <Flex direction="column" justify="center" align="center" w="90%" wrap="wrap">
         <NavBar />
         <HeroSection />
         <Hide below="lg">
-          {/* <Tabs variant="soft-rounded" colorScheme="blue" w="80%">
-            <TabList>
-              <Tab>Stacked</Tab>
-              <Tab>Card</Tab>
-            </TabList>
-            <TabPanels>
-              <TabPanel>
-                <VStack spacing="1rem" pt="3rem" maxW="100%">
-                  <CardAI
-                    title={igCaption.title}
-                    description={igCaption.description}
-                    cta={igCaption.cta}
-                    image={igCaption.image}
-                    launched={igCaption.launched}
-                    link={igCaption.link}
-                  />
-                  <CardAI
-                    title={fixGrammar.title}
-                    description={fixGrammar.description}
-                    cta={fixGrammar.cta}
-                    image={fixGrammar.image}
-                    launched={fixGrammar.launched}
-                    link={fixGrammar.link}
-                  />
-                  <CardAI
-                    title={resumeBuilder.title}
-                    description={resumeBuilder.description}
-                    cta={resumeBuilder.cta}
-                    image={resumeBuilder.image}
-                    launched={resumeBuilder.launched}
-                    link={resumeBuilder.link}
-                  />
-                </VStack>
-              </TabPanel>
-              <TabPanel> */}
           <Flex
             justify="center"
             align="flex-start"
@@ -82,9 +56,6 @@ export const Home = () => {
               link={resumeBuilder.link}
             />
           </Flex>
-          {/* </TabPanel>
-            </TabPanels>
-          </Tabs> */}
         </Hide>
         <Show below="lg">
           <Flex

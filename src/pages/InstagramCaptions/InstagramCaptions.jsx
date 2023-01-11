@@ -31,6 +31,7 @@ export const InstagramCaptions = () => {
               <Tab>Product</Tab>
               <Tab>Generic</Tab>
               <Tab isDisabled>Enhancer</Tab>
+              <Tab isDisabled>Hashtag Generator</Tab>
             </TabList>
             <TabPanels>
               <TabPanel>

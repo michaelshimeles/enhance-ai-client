@@ -51,30 +51,31 @@ export const GenericCaption = () => {
           w="full"
           py="1rem"
         >
-          <FormLabel>Pick social platform</FormLabel>
           <Select
+            placeholder="Choose social"
             type="select"
             {...register('platform', {
               required: true,
             })}
             name="tone"
             id="tone"
+            isRequired={true}
           >
             <option value="instagram">Instagram</option>
             <option value="facebook">facebook</option>
           </Select>
         </Flex>
         <Flex direction="column" justify="center" align="flex-start" w="full">
-          <FormLabel>Pick the tone</FormLabel>
           <Select
             type="select"
-            // placeholder="Mini description of product / service..."
+            placeholder="Tone of caption"
             {...register('tone', {
               required: true,
             })}
             name="tone"
             id="tone"
             pb="1rem"
+            isRequired={true}
           >
             <option value="Witty">Witty</option>
             <option value="Funny">Funny</option>

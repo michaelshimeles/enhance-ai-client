@@ -1,11 +1,12 @@
-import { Text, Card, CardBody, CardFooter, Button } from '@chakra-ui/react';
+import { Text, Card, CardBody, CardFooter, Button, Divider } from '@chakra-ui/react';
 
 export const CaptionResult = ({ result }) => {
   return (
-    <Card align="center" w="full">
+    <Card align="center" w="70%">
       <CardBody>
         <Text>{result}</Text>
       </CardBody>
+      <Divider w="95%"/>
       <CardFooter>
         <Button
           colorScheme="blue"
