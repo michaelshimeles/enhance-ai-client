@@ -26,16 +26,16 @@ export const HashtagGenerator = () => {
           width: '100%',
         }}
       >
-        <VStack>
+        <VStack w={["100%", "80%", "50%"]}>
           <Input
             type="text"
             {...register('niche', {
               required: true,
             })}
             placeholder="Enter your niche"
-            w="40%"
+            w="full"
           />
-          <Button isLoading={isLoading} type="submit" colorScheme="blue">
+          <Button isLoading={isLoading} type="submit" colorScheme="blue" w="full">
             Submit
           </Button>
         </VStack>

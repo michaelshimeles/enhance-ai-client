@@ -27,12 +27,11 @@ export const InstagramCaptions = () => {
           w={['90%', '80%']}
           pt="2rem"
         >
-          <Tabs variant="soft-rounded">
+          <Tabs variant="soft-rounded" size={["sm", "md"]}>
             <TabList p="1rem">
               <Tab>Product</Tab>
               <Tab>Generic</Tab>
-              <Tab>Hashtag Generator</Tab>
-              <Tab isDisabled>Enhancer</Tab>
+              <Tab>Hashtags</Tab>
             </TabList>
             <TabPanels>
               <TabPanel>
