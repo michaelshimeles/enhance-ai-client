@@ -20,7 +20,7 @@ import { resumeBuilder } from '../../info/ResumeBuilder';
 export const Home = () => {
   return (
     <Layout>
-      <Flex direction="column" justify="center" align="center" w="90%" wrap="wrap">
+      <Flex direction="column" justify="center" align="center" w="full" wrap="wrap">
         <NavBar />
         <HeroSection />
         <Hide below="lg">
