@@ -4,6 +4,6 @@ export const resumeBuilder = {
   description: `Improve your job search success with our powerful AI-powered resume optimization tool, designed to help you craft a standout and effective resume.`,
   cta: 'Build Resume',
   image: resume,
-  launched: false,
+  launched: true,
   link: '/resume',
 };
