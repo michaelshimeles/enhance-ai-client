@@ -9,7 +9,6 @@ export const GenericCaption = () => {
   const [response, setResponse] = useState('');
 
   const onSubmit = data => {
-    // Adding the selected option to data
     console.log('On Submit', data);
     setResponse(data);
   };
@@ -24,8 +23,6 @@ export const GenericCaption = () => {
 
   // Formatted result
   const newResult = result?.data?.choices[0].text.split(/\s\d+\.\s/);
-
-  console.log(newResult);
   return (
     <Flex direction="column" justify="center" align="center" gap="0.5rem">
       <form

@@ -1,7 +1,8 @@
-import { Flex, Button, Textarea, Text } from '@chakra-ui/react';
+import { Button, Flex, Textarea } from '@chakra-ui/react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useGrammar } from '../../hooks/useGrammar';
-import { useState } from 'react';
+import { CaptionResult } from '../CaptionResult/CaptionResult';
 
 export const GrammarForm = () => {
   const [response, setResponse] = useState('');
@@ -22,11 +23,6 @@ export const GrammarForm = () => {
       w="60%"
       gap="1rem"
     >
-      {result?.data?.choices[0].text ? (
-        <Text>{result?.data?.choices[0].text}</Text>
-      ) : (
-        <></>
-      )}
       <form
         style={{
           width: '100%',
@@ -54,6 +50,13 @@ export const GrammarForm = () => {
           Submit
         </Button>
       </form>
+      <Flex w="100%" justify="center" align="center">
+        {result?.data?.choices[0].text ? (
+          <CaptionResult result={result?.data?.choices[0].text} />
+        ) : (
+          <></>
+        )}
+      </Flex>
     </Flex>
   );
 };
