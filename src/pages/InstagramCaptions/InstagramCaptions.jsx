@@ -12,6 +12,7 @@ import { CaptionForm } from '../../components/CaptionForm/CaptionForm';
 import { Layout } from '../../components/Layout/Layout';
 import { NavBar } from '../../components/NavBar/NavBar';
 import { GenericCaption } from '../../components/GenericCaption/GenericCaption';
+import { HashtagGenerator } from '../../components/HashtagGenerator/HashtagGenerator';
 
 export const InstagramCaptions = () => {
   return (
@@ -30,8 +31,8 @@ export const InstagramCaptions = () => {
             <TabList p="1rem">
               <Tab>Product</Tab>
               <Tab>Generic</Tab>
+              <Tab>Hashtag Generator</Tab>
               <Tab isDisabled>Enhancer</Tab>
-              <Tab isDisabled>Hashtag Generator</Tab>
             </TabList>
             <TabPanels>
               <TabPanel>
@@ -41,7 +42,7 @@ export const InstagramCaptions = () => {
                 <GenericCaption />
               </TabPanel>
               <TabPanel>
-                <p>three!</p>
+                <HashtagGenerator />
               </TabPanel>
             </TabPanels>
           </Tabs>

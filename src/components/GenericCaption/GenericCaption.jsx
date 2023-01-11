@@ -57,9 +57,8 @@ export const GenericCaption = () => {
             {...register('platform', {
               required: true,
             })}
-            name="tone"
-            id="tone"
-            isRequired={true}
+            name="platform"
+            id="platform"
           >
             <option value="instagram">Instagram</option>
             <option value="facebook">facebook</option>
@@ -75,7 +74,6 @@ export const GenericCaption = () => {
             name="tone"
             id="tone"
             pb="1rem"
-            isRequired={true}
           >
             <option value="Witty">Witty</option>
             <option value="Funny">Funny</option>
