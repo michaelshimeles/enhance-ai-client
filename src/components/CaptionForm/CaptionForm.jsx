@@ -27,14 +27,11 @@ export const CaptionForm = () => {
   // Formatted result
   const newResult = result?.data?.choices[0].text.split(/\s\d+\.\s/);
 
-  console.log(newResult);
-
   return (
     <Flex
       direction="column"
       justify="center"
       align="center"
-      // w="100%"
       gap="0.5rem"
     >
       <form
@@ -116,7 +113,6 @@ export const CaptionForm = () => {
       </form>
       {newResult ? (
         newResult.slice(1).map((line, index) => {
-          console.log(line);
           return <CaptionResult result={line} key={index} />;
         })
       ) : (

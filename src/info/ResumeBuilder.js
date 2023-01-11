@@ -5,5 +5,5 @@ export const resumeBuilder = {
   cta: 'Build Resume',
   image: resume,
   launched: false,
-  link: '/',
+  link: '/resume',
 };

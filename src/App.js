@@ -8,6 +8,7 @@ import { Login } from './pages/Login/Login';
 import { SignUp } from './pages/SignUp/SignUp';
 import { ProfileDashboard } from './pages/ProfileDashboard/ProfileDashboard';
 import { PrivacyPolicy } from './pages/PrivacyPolicy/PrivacyPolicy';
+import { ResumeBuilder } from './pages/ResumeBuilder/ResumeBuilder';
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/grammar" element={<FixGrammar />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/resume" element={<ResumeBuilder />} />
           <Route path="/dashboard" element={<ProfileDashboard />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
         </Routes>
