@@ -17,7 +17,7 @@ export const useResume = data => {
   if (data) {
     result = true;
   }
-  return useQuery(['prompt', data], fetchResume, {
+  return useQuery(['resume', data], fetchResume, {
     enabled: result,
     refetchInterval: 100000000,
     refetchOnWindowFocus: false,

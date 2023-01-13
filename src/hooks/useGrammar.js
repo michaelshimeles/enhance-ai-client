@@ -15,7 +15,7 @@ export const useGrammar = prompt => {
   if (prompt) {
     result = true;
   }
-  return useQuery(['prompt', prompt], fetchPromptResult, {
+  return useQuery(['grammar', prompt], fetchPromptResult, {
     enabled: result,
     refetchInterval: 100000000,
     refetchOnWindowFocus: false,

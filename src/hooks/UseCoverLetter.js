@@ -1,23 +1,22 @@
 import { useQuery } from 'react-query';
 import axios from 'axios';
 
-const fetchCaptionResult = ({ queryKey }) => {
+const fetchCoverLetter = ({ queryKey }) => {
   const data = queryKey[1];
-  return axios.get(`${process.env.REACT_APP_URL}/captions/generic`, {
+  return axios.get(`${process.env.REACT_APP_URL}/resume/coverletter`, {
     params: {
-      platform: data.platform,
-      tone: data.tone,
       description: data.description,
+      // resume: data.resume,
     },
   });
 };
 
-export const useGenericCaption = data => {
+export const useCoverLetter = data => {
   let result = false;
   if (data) {
     result = true;
   }
-  return useQuery(['generic-caption', data], fetchCaptionResult, {
+  return useQuery(['cover-letter', data], fetchCoverLetter, {
     enabled: result,
     refetchInterval: 100000000,
     refetchOnWindowFocus: false,
