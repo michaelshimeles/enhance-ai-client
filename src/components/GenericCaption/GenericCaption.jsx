@@ -103,7 +103,6 @@ export const GenericCaption = () => {
       </form>
       {newResult ? (
         newResult.slice(1).map((line, index) => {
-          console.log(line);
           return <CaptionResult result={line} key={index} />;
         })
       ) : (

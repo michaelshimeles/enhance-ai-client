@@ -1,16 +1,10 @@
 import {
-  Flex,
-  Image,
-  Box,
-  Link,
-  chakra,
-  Badge,
-  useColorModeValue,
-  Text,
+  Badge, Box, chakra, Flex,
+  Image, Link, Text, useColorModeValue
 } from '@chakra-ui/react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link as ReachLink } from 'react-router-dom';
 import { auth } from '../../Firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
 
 export const NewCard = ({ image, description, title, link, cta, launched }) => {
   const bgColor = useColorModeValue('white', 'blackAlpha.700');

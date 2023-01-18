@@ -24,7 +24,6 @@ export const ResumeFixer = () => {
 
   // Formatted result
   const newResult = result?.data?.choices[0].text.split(/\s\d+\.\s/);
-  console.log('newResult', newResult);
   return (
     <Flex
       direction="column"

@@ -10,32 +10,23 @@ import {
   Input,
   Link,
   Text,
-  VStack,
+  VStack
 } from '@chakra-ui/react';
-import { GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
 import Lottie from 'lottie-react';
-import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
-import {
-  Link as ReachLink,
-  useNavigate,
-  useSearchParams,
-} from 'react-router-dom';
+import { Link as ReachLink } from 'react-router-dom';
 import loadingAni from '../../assets/animations/loading.json';
 import { auth } from '../../Firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export const SignUpForm = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [user, loading] = useAuthState(auth);
 
   // Sign in with google
   const provider = new GoogleAuthProvider();
-
-  const [searchParams] = useSearchParams();
-  const returnUrl = searchParams.get('returnUrl');
 
   const GoogleLogin = async () => {
     try {
@@ -65,13 +56,6 @@ export const SignUpForm = () => {
       });
   };
 
-  useEffect(() => {
-    if (user) {
-      navigate(returnUrl || '/dashboard');
-    }
-    // eslint-disable-next-line
-  }, [user]);
-
   return loading && !user ? (
     <>
       <Lottie animationData={loadingAni} />
@@ -84,11 +68,18 @@ export const SignUpForm = () => {
           <Flex direction="column" pt="1rem" gap="0.5rem">
             <Box>
               <FormLabel>Email address</FormLabel>
-              <Input type="text" {...register('email', { required: true })} w="30rem" />
+              <Input
+                type="text"
+                {...register('email', { required: true })}
+                w="30rem"
+              />
             </Box>
             <Box>
               <FormLabel>Password</FormLabel>
-              <Input type="password" {...register('password', { required: true })} />
+              <Input
+                type="password"
+                {...register('password', { required: true })}
+              />
             </Box>
             <HStack justify="space-between" pt="0.5rem">
               <Checkbox {...register('remember')}>Remember me</Checkbox>
