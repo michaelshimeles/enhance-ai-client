@@ -19,7 +19,7 @@ export const NewCard = ({ image, description, title, link, cta, launched }) => {
   return (
     <Link
       as={ReachLink}
-      to={user ? link : `/signup?returnUrl=${link}`}
+      to={user ? link : `/account?returnUrl=${link}`}
       _hover={{ textDecoration: 'none' }}
       p="1rem"
     >
