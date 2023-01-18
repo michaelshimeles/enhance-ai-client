@@ -2,6 +2,7 @@ import { Button, Heading, Progress, VStack } from '@chakra-ui/react';
 import { Layout } from '../../components/Layout/Layout';
 import { NavBar } from '../../components/NavBar/NavBar';
 import { auth } from '../../Firebase';
+import { signOut } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 // eslint-disable-next-line
@@ -38,7 +39,21 @@ export const ProfileDashboard = () => {
       <NavBar />
       <VStack>
         <Heading>Welcome {user.displayName}</Heading>
-        <Button onClick={() => auth.signOut()}>Sign Out</Button>
+        <Button
+          onClick={() => {
+            signOut(auth)
+              .then(() => {
+                // Sign-out successful.
+                console.log('Successful Log');
+              })
+              .catch(error => {
+                // An error happened.
+                console.log(error);
+              });
+          }}
+        >
+          Sign Out
+        </Button>
       </VStack>
     </Layout>
   );

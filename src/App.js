@@ -1,30 +1,58 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { auth } from './Firebase';
+import { Account } from './pages/Account/Account';
+import { FixGrammar } from './pages/FixGrammar/FixGrammar';
 import { Home } from './pages/Home/Home';
 import { InstagramCaptions } from './pages/InstagramCaptions/InstagramCaptions';
-import { FixGrammar } from './pages/FixGrammar/FixGrammar';
-import { QueryClientProvider, QueryClient } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
-import { Login } from './pages/Login/Login';
-import { SignUp } from './pages/SignUp/SignUp';
-import { ProfileDashboard } from './pages/ProfileDashboard/ProfileDashboard';
 import { PrivacyPolicy } from './pages/PrivacyPolicy/PrivacyPolicy';
+import { ProfileDashboard } from './pages/ProfileDashboard/ProfileDashboard';
 import { ResumeBuilder } from './pages/ResumeBuilder/ResumeBuilder';
 
 const queryClient = new QueryClient();
 
 function App() {
+  const [user] = useAuthState(auth);
+
+  const RequireAuth = ({ children }) => {
+    return user ? children : <Navigate to="/account" />;
+  };
+
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/captions" element={<InstagramCaptions />} />
-          <Route path="/grammar" element={<FixGrammar />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/resume" element={<ResumeBuilder />} />
+          <Route path="/account" element={<Account />} />
+          <Route
+            path="/captions"
+            element={
+              <RequireAuth>
+                <InstagramCaptions />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/grammar"
+            element={
+              <RequireAuth>
+                <FixGrammar />{' '}
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/resume"
+            element={
+              <RequireAuth>
+                <ResumeBuilder />{' '}
+              </RequireAuth>
+            }
+          />
           <Route path="/dashboard" element={<ProfileDashboard />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="*" element={<Home />} />
         </Routes>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />

@@ -3,18 +3,19 @@ import {
   Flex,
   Image,
   Link,
-  Hide,
-  useColorModeValue,
+  Text,
+  // useColorModeValue
 } from '@chakra-ui/react';
-// import { useAuthState } from 'react-firebase-hooks/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link as ReachLink } from 'react-router-dom';
+import profilePlaceholder from '../../assets/images/profile-placeholder.jpg';
 import logo from '../../assets/logo/logo.png';
 import { ColorModeSwitcher } from '../../ColorModeSwitcher';
-// import { auth } from '../../Firebase';
+import { auth } from '../../Firebase';
 
 export const NavBar = () => {
-  // const [user] = useAuthState(auth);
-  const bgColor = useColorModeValue('white', 'blackAlpha.700');
+  const [user] = useAuthState(auth);
+  // const bgColor = useColorModeValue('white', 'blackAlpha.700');
 
   return (
     <Flex justifyContent="center" alignItems="center" w="100%" py="1rem">
@@ -23,33 +24,33 @@ export const NavBar = () => {
           <Image src={logo} alt="Enhance AI logo" w="2.5rem" />
         </Link>
         <Flex justify="center" align="center">
-          {/* {!user && (
+          {!user && (
             <Link
               as={ReachLink}
-              to="/signup"
+              to="/account"
               _hover={{ textDecoration: 'none' }}
             >
               <Button>
                 <Text>Get Access</Text>
               </Button>
             </Link>
-          )} */}
-          {/* {user && (
+          )}
+          {user && (
             <Link
               as={ReachLink}
               to="/dashboard"
               _hover={{ textDecoration: 'none' }}
             >
               <Image
-                src={user.photoURL}
+                src={user.photoURL || profilePlaceholder}
                 rounded="full"
                 w="2rem"
                 h="2rem"
                 alt="profile pic"
               />
             </Link>
-          )} */}
-          <Hide below="lg">
+          )}
+          {/* <Hide below="lg">
             <Flex gap="1rem">
               <Link
                 as={ReachLink}
@@ -73,7 +74,7 @@ export const NavBar = () => {
                 <Button bgColor={bgColor}>💼 Resume</Button>
               </Link>
             </Flex>
-          </Hide>
+          </Hide> */}
           <ColorModeSwitcher />
         </Flex>
       </Flex>
