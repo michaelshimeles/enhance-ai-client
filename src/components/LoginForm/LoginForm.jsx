@@ -8,11 +8,11 @@ import {
   HStack,
   Input,
   Link,
-  Text,
+  Text
 } from '@chakra-ui/react';
 import {
   // createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
+  signInWithEmailAndPassword
 } from 'firebase/auth';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -33,6 +33,7 @@ export const LoginForm = () => {
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then(userCredential => {
         // Signed in
+        // eslint-disable-next-line 
         const user = userCredential.user;
         navigate('/');
         // ...
