@@ -9,12 +9,28 @@ import {
   TabPanel,
   Box,
   Text,
+  Progress
 } from '@chakra-ui/react';
 import { NavBar } from '../../components/NavBar/NavBar';
 import { ResumeFixer } from '../../components/ResumeFixer/ResumeFixer';
 import { CoverLetter } from '../../components/CoverLetter/CoverLetter';
+import { auth } from '../../Firebase';
+import { useNavigate } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 export const ResumeBuilder = () => {
+  const [user] = useAuthState(auth);
+
+  const navigate = useNavigate();
+  if (!user) {
+    navigate('/');
+    return (
+      <Layout>
+        <Progress isIndeterminate size="xs" />
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       <Flex direction="column" justify="center" align="center" pb="5rem">
