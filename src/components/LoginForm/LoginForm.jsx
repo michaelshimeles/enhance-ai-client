@@ -8,23 +8,20 @@ import {
   HStack,
   Input,
   Link,
-  Text,
+  Text
 } from '@chakra-ui/react';
 import {
   // createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
+  signInWithEmailAndPassword
 } from 'firebase/auth';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link as ReachLink, useNavigate } from 'react-router-dom';
 import { auth } from '../../Firebase';
-// import { getAuth, generatePasswordResetLink } from 'firebase/auth';
-// import { useAuthState } from 'react-firebase-hooks/auth';
 
 export const LoginForm = () => {
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState(null);
-  // const [user] = useAuthState(auth);
 
   const {
     register,
@@ -36,7 +33,7 @@ export const LoginForm = () => {
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then(userCredential => {
         // Signed in
-        // eslint-disable-next-line
+        // eslint-disable-next-line 
         const user = userCredential.user;
         navigate('/');
         // ...
@@ -58,18 +55,11 @@ export const LoginForm = () => {
           <Box>
             <FormLabel>Email address</FormLabel>
 
-            <Input
-              type="text"
-              {...register('email', { required: true })}
-              w="40rem"
-            />
+            <Input type="text" {...register('email', { required: true })} w="30rem" />
           </Box>
           <Box>
             <FormLabel>Password</FormLabel>
-            <Input
-              type="password"
-              {...register('password', { required: true })}
-            />
+            <Input type="password" {...register('password', { required: true })} />
           </Box>
           <HStack justify="space-between" pt="0.5rem">
             <Checkbox {...register('remember')}>Remember me</Checkbox>
