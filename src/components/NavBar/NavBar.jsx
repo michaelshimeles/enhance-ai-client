@@ -1,10 +1,10 @@
 import {
+  Badge,
   Button,
   Flex,
   Image,
   Link,
-  Text,
-  // useColorModeValue
+  Text
 } from '@chakra-ui/react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link as ReachLink } from 'react-router-dom';
@@ -36,19 +36,22 @@ export const NavBar = () => {
             </Link>
           )}
           {user && (
-            <Link
-              as={ReachLink}
-              to="/dashboard"
-              _hover={{ textDecoration: 'none' }}
-            >
-              <Image
-                src={user.photoURL || profilePlaceholder}
-                rounded="full"
-                w="2rem"
-                h="2rem"
-                alt="profile pic"
-              />
-            </Link>
+            <Flex justify="center" align="center" gap="1rem">
+              <Badge colorScheme="green">Free Account</Badge>
+              <Link
+                as={ReachLink}
+                to="/dashboard"
+                _hover={{ textDecoration: 'none' }}
+              >
+                <Image
+                  src={user.photoURL || profilePlaceholder}
+                  rounded="full"
+                  w="2rem"
+                  h="2rem"
+                  alt="profile pic"
+                />
+              </Link>
+            </Flex>
           )}
           {/* <Hide below="lg">
             <Flex gap="1rem">
