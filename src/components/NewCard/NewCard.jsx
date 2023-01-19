@@ -115,7 +115,7 @@ export const NewCard = ({ image, description, title, link, cta, launched }) => {
           <ModalHeader>Alert 🚨</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text>You need to create an account</Text>
+            <Text>You need to login with your account!</Text>
           </ModalBody>
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={onClose}>

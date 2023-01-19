@@ -24,7 +24,6 @@ export const CoverLetter = () => {
 
   const newResult = result?.data?.choices[0].text.split(/\s\d+\.\s/);
 
-  console.log(newResult)
   return (
     <Layout>
       <Flex direction="column" justify="center" align="center" gap="0.5rem">

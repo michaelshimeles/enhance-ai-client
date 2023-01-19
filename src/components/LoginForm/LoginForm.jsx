@@ -1,15 +1,14 @@
 import {
   Box,
-  Button, Flex,
+  Button,
+  Flex,
   FormLabel,
   Heading,
   HStack,
-  Input, Text
+  Input,
+  Text
 } from '@chakra-ui/react';
-import {
-  // createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
-} from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -24,7 +23,10 @@ export const LoginForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  
+
+  // onAuthStateChanged(auth, currentUser => {
+  //   console.log(currentUser);
+  // });
 
   const onSubmit = data =>
     signInWithEmailAndPassword(auth, data.email, data.password)
@@ -53,7 +55,7 @@ export const LoginForm = () => {
             <FormLabel>Email address</FormLabel>
 
             <Input
-              type="text"
+              type="email"
               {...register('email', { required: true })}
               w={['15rem', '15rem', '30rem']}
             />

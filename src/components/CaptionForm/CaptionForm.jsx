@@ -17,7 +17,6 @@ export const CaptionForm = () => {
 
   const onSubmit = data => {
     // Adding the selected option to data
-    console.log('On Submit', data);
     setResponse(data);
   };
 

@@ -1,24 +1,22 @@
 import {
   Box,
-  Button, Flex,
+  Button,
+  Flex,
   FormLabel,
   Heading,
-  HStack,
-  Input, Text
+  Input,
+  Progress,
+  Text
 } from '@chakra-ui/react';
-import {
-  createUserWithEmailAndPassword,
-  // GoogleAuthProvider,
-  // signInWithRedirect
-} from 'firebase/auth';
-import Lottie from 'lottie-react';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import loadingAni from '../../assets/animations/loading.json';
-import { auth } from '../../Firebase';
-
+import { useNavigate } from 'react-router-dom';
+import { auth, db } from '../../Firebase';
+import { Layout } from '../Layout/Layout';
 export const SignUpForm = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [user, loading] = useAuthState(auth);
 
   // Sign in with google
@@ -32,6 +30,8 @@ export const SignUpForm = () => {
   //   }
   // };
 
+  // const database = collection(db, 'users');
+
   const {
     register,
     handleSubmit,
@@ -39,11 +39,30 @@ export const SignUpForm = () => {
   } = useForm();
 
   const onSubmit = data => {
+    const newData = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+    };
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then(userCredential => {
         // Signed in
-        const user = userCredential.user;
-        console.log('New User', user);
+        // eslint-disable-next-line
+        setDoc(doc(db, 'users', userCredential.user.uid), newData)
+          .then(() => {
+            console.log('Data sent to db');
+          })
+          .catch(error => {
+            console.log(error.message);
+          });
+
+        // addDoc(database, newData)
+        //   .then(() => {
+        //     console.log('Data sent to db');
+        //   })
+        //   .catch(error => {
+        //     console.log(error.message);
+        //   });
       })
       .catch(error => {
         const errorCode = error.code;
@@ -53,19 +72,37 @@ export const SignUpForm = () => {
   };
 
   return loading && !user ? (
-    <>
-      <Lottie animationData={loadingAni} />
-    </>
-  ) : !loading && user ? null : (
+    <Layout>
+      <Progress isIndeterminate size="xs" />
+    </Layout>
+  ) : !loading && user ? (
+    navigate('/')
+  ) : (
     <Flex direction="column">
       <Flex justify="center" align="center">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Heading textAlign="center">Sign Up</Heading>
           <Flex direction="column" pt="1rem" gap="0.5rem">
             <Box>
-              <FormLabel>Email address</FormLabel>
+              <FormLabel>First Name</FormLabel>
               <Input
                 type="text"
+                {...register('firstName', { required: true })}
+                w={['15rem', '15rem', '30rem']}
+              />
+            </Box>
+            <Box>
+              <FormLabel>Last Name</FormLabel>
+              <Input
+                type="text"
+                {...register('lastName', { required: true })}
+                w={['15rem', '15rem', '30rem']}
+              />
+            </Box>
+            <Box>
+              <FormLabel>Email address</FormLabel>
+              <Input
+                type="email"
                 {...register('email', { required: true })}
                 w={['15rem', '15rem', '30rem']}
               />
@@ -78,12 +115,6 @@ export const SignUpForm = () => {
                 w={['15rem', '15rem', '30rem']}
               />
             </Box>
-            <HStack justify="space-between" pt="0.5rem">
-              {/* <Checkbox {...register('remember')}>Remember me</Checkbox> */}
-              {/* <Link as={ReachLink} to="/" _hover={{ textDecoration: 'none' }}>
-                <Text textColor="blue.300">Forgot password</Text>
-              </Link> */}
-            </HStack>
             <Button w={['15rem', '15rem', '30rem']} type="submit" mt="0.5rem">
               Create Account
             </Button>

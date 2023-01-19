@@ -9,7 +9,6 @@ export const GenericCaption = () => {
   const [response, setResponse] = useState('');
 
   const onSubmit = data => {
-    console.log('On Submit', data);
     setResponse(data);
   };
 

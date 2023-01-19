@@ -11,7 +11,7 @@ export const FixGrammar = () => {
 
   const navigate = useNavigate();
   if (!user) {
-    navigate('/');
+    navigate('/account');
     return (
       <Layout>
         <Progress isIndeterminate size="xs" />
