@@ -1,6 +1,21 @@
 import {
-  Badge, Box, chakra, Flex,
-  Image, Link, Text, useColorModeValue
+  Badge,
+  Box,
+  Button,
+  chakra,
+  Flex,
+  Image,
+  Link,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalOverlay,
+  Text,
+  useColorModeValue,
+  useDisclosure,
+  ModalHeader
 } from '@chakra-ui/react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link as ReachLink } from 'react-router-dom';
@@ -9,13 +24,15 @@ import { auth } from '../../Firebase';
 export const NewCard = ({ image, description, title, link, cta, launched }) => {
   const bgColor = useColorModeValue('white', 'blackAlpha.700');
   const [user] = useAuthState(auth);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <Link
       as={ReachLink}
-      to={user ? link : ""}
+      to={user ? link : ''}
       _hover={{ textDecoration: 'none' }}
       p="1rem"
+      onClick={onOpen}
     >
       <Flex alignItems="center" justifyContent="center" maxW="sm">
         <Box
@@ -92,6 +109,30 @@ export const NewCard = ({ image, description, title, link, cta, launched }) => {
           </Box>
         </Box>
       </Flex>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Alert 🚨</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text>You need to create an account</Text>
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Link
+              as={ReachLink}
+              to="/account"
+              _hover={{ textDecoration: 'none' }}
+            >
+              <Button>
+                <Text>Get Access</Text>
+              </Button>
+            </Link>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Link>
   );
 };

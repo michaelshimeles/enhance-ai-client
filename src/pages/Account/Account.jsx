@@ -1,4 +1,3 @@
-import { LoginForm } from '../../components/LoginForm/LoginForm';
 import { NavBar } from '../../components/NavBar/NavBar';
 import { Layout } from '../../components/Layout/Layout';
 import {
@@ -11,6 +10,7 @@ import {
   Box,
 } from '@chakra-ui/react';
 import { SignUpForm } from '../../components/SignUpForm/SignUpForm';
+import { LoginForm } from '../../components/LoginForm/LoginForm';
 
 export const Account = () => {
   return (
