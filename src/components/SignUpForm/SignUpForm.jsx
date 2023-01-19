@@ -1,23 +1,19 @@
 import {
   Box,
-  Button,
-  Center,
-  Checkbox,
-  Flex,
+  Button, Flex,
   FormLabel,
   Heading,
   HStack,
-  Input,
-  Link,
-  Text,
-  VStack
+  Input, Text
 } from '@chakra-ui/react';
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  // GoogleAuthProvider,
+  // signInWithRedirect
+} from 'firebase/auth';
 import Lottie from 'lottie-react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { FcGoogle } from 'react-icons/fc';
-import { Link as ReachLink } from 'react-router-dom';
 import loadingAni from '../../assets/animations/loading.json';
 import { auth } from '../../Firebase';
 
@@ -26,15 +22,15 @@ export const SignUpForm = () => {
   const [user, loading] = useAuthState(auth);
 
   // Sign in with google
-  const provider = new GoogleAuthProvider();
+  // const provider = new GoogleAuthProvider();
 
-  const GoogleLogin = async () => {
-    try {
-      await signInWithRedirect(auth, provider);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const GoogleLogin = async () => {
+  //   try {
+  //     await signInWithRedirect(auth, provider);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const {
     register,
@@ -71,7 +67,7 @@ export const SignUpForm = () => {
               <Input
                 type="text"
                 {...register('email', { required: true })}
-                w="30rem"
+                w={['15rem', '15rem', '30rem']}
               />
             </Box>
             <Box>
@@ -79,15 +75,16 @@ export const SignUpForm = () => {
               <Input
                 type="password"
                 {...register('password', { required: true })}
+                w={['15rem', '15rem', '30rem']}
               />
             </Box>
             <HStack justify="space-between" pt="0.5rem">
-              <Checkbox {...register('remember')}>Remember me</Checkbox>
-              <Link as={ReachLink} to="/" _hover={{ textDecoration: 'none' }}>
+              {/* <Checkbox {...register('remember')}>Remember me</Checkbox> */}
+              {/* <Link as={ReachLink} to="/" _hover={{ textDecoration: 'none' }}>
                 <Text textColor="blue.300">Forgot password</Text>
-              </Link>
+              </Link> */}
             </HStack>
-            <Button w="full" type="submit" mt="0.5rem">
+            <Button w={['15rem', '15rem', '30rem']} type="submit" mt="0.5rem">
               Create Account
             </Button>
             {errors.email && <Text>Email field is required</Text>}
@@ -95,7 +92,7 @@ export const SignUpForm = () => {
           </Flex>
         </form>
       </Flex>
-      <VStack spacing="1rem" pt="1rem">
+      {/* <VStack spacing="1rem" pt="1rem">
         <Button
           variant={'outline'}
           leftIcon={<FcGoogle />}
@@ -106,7 +103,7 @@ export const SignUpForm = () => {
             <Text>Get access with Google</Text>
           </Center>
         </Button>
-      </VStack>
+      </VStack> */}
     </Flex>
   );
 };

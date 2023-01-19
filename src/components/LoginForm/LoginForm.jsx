@@ -1,14 +1,10 @@
 import {
   Box,
-  Button,
-  Checkbox,
-  Flex,
+  Button, Flex,
   FormLabel,
   Heading,
   HStack,
-  Input,
-  Link,
-  Text
+  Input, Text
 } from '@chakra-ui/react';
 import {
   // createUserWithEmailAndPassword,
@@ -16,7 +12,7 @@ import {
 } from 'firebase/auth';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link as ReachLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { auth } from '../../Firebase';
 
 export const LoginForm = () => {
@@ -33,7 +29,7 @@ export const LoginForm = () => {
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then(userCredential => {
         // Signed in
-        // eslint-disable-next-line 
+        // eslint-disable-next-line
         const user = userCredential.user;
         navigate('/');
         // ...
@@ -49,25 +45,33 @@ export const LoginForm = () => {
   return (
     <Flex justify="center" align="center">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Heading textAlign="center">Login to your account</Heading>
+        <Heading textAlign="center">Login</Heading>
 
         <Flex direction="column" pt="1rem" gap="0.5rem">
           <Box>
             <FormLabel>Email address</FormLabel>
 
-            <Input type="text" {...register('email', { required: true })} w="30rem" />
+            <Input
+              type="text"
+              {...register('email', { required: true })}
+              w={['15rem', '15rem', '30rem']}
+            />
           </Box>
           <Box>
             <FormLabel>Password</FormLabel>
-            <Input type="password" {...register('password', { required: true })} />
+            <Input
+              type="password"
+              {...register('password', { required: true })}
+              w={['15rem', '15rem', '30rem']}
+            />
           </Box>
           <HStack justify="space-between" pt="0.5rem">
-            <Checkbox {...register('remember')}>Remember me</Checkbox>
-            <Link as={ReachLink} to="/" _hover={{ textDecoration: 'none' }}>
+            {/* <Checkbox {...register('remember')}>Remember me</Checkbox> */}
+            {/* <Link as={ReachLink} to="/" _hover={{ textDecoration: 'none' }}>
               <Text textColor="blue.300">Forgot password</Text>
-            </Link>
+            </Link> */}
           </HStack>
-          <Button w="full" type="submit" mt="0.5rem">
+          <Button w={['15rem', '15rem', '30rem']} type="submit" mt="0.5rem">
             Login
           </Button>
           {errors.email && <Text>Email field is required</Text>}

@@ -53,31 +53,6 @@ export const NavBar = () => {
               </Link>
             </Flex>
           )}
-          {/* <Hide below="lg">
-            <Flex gap="1rem">
-              <Link
-                as={ReachLink}
-                to="/captions"
-                _hover={{ textDecoration: 'none' }}
-              >
-                <Button bgColor={bgColor}>💬 Captions</Button>
-              </Link>
-              <Link
-                as={ReachLink}
-                to="/grammar"
-                _hover={{ textDecoration: 'none' }}
-              >
-                <Button bgColor={bgColor}>📝 Grammar</Button>
-              </Link>
-              <Link
-                as={ReachLink}
-                to="/resume"
-                _hover={{ textDecoration: 'none' }}
-              >
-                <Button bgColor={bgColor}>💼 Resume</Button>
-              </Link>
-            </Flex>
-          </Hide> */}
           <ColorModeSwitcher />
         </Flex>
       </Flex>
