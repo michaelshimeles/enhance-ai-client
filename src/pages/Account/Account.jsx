@@ -17,7 +17,7 @@ export const Account = () => {
     <Layout>
       <NavBar />
       <Flex justify="center" align="center" pt="4rem">
-        <Tabs variant="soft-rounded" colorScheme="green">
+        <Tabs variant="soft-rounded" colorScheme="blue">
           <TabList>
             <Tab>Login</Tab>
             <Tab>Signup</Tab>

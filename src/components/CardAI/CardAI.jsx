@@ -38,7 +38,6 @@ export const CardAI = ({ title, description, cta, image, launched, link }) => {
             <VStack>
               <Link
                 as={ReachLink}
-                // to={user ? link : `/signup?returnUrl=${link}`}
                 to={link}
                 _hover={{ textDecoration: 'none' }}
               >
