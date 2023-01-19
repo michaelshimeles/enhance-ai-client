@@ -20,6 +20,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/Layout/Layout';
 import { NavBar } from '../../components/NavBar/NavBar';
+import { signOut } from 'firebase/auth';
 // eslint-disable-next-line
 import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
@@ -103,6 +104,22 @@ export const ProfileDashboard = () => {
               </Box>
               <Button onClick={onOpen} w="20%">
                 Save Changes
+              </Button>
+              <Button
+                onClick={() => {
+                  signOut(auth)
+                    .then(() => {
+                      // Sign-out successful.
+                      console.log('Successful Log');
+                    })
+                    .catch(error => {
+                      // An error happened.
+                      console.log(error);
+                    });
+                }}
+                w="20%"
+              >
+                Sign Out
               </Button>
               <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
