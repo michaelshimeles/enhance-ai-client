@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/Layout/Layout';
 import { NavBar } from '../../components/NavBar/NavBar';
 // eslint-disable-next-line
+import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { auth, db } from '../../Firebase';
@@ -13,32 +14,22 @@ export const ProfileDashboard = () => {
   const [profileInfo, setProfileInfo] = useState({});
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   if (loading && !user) {
-  //     return (
-  //       <Layout>
-  //         <Progress size="xs" isIndeterminate />
-  //       </Layout>
-  //     );
-  //   } else if (!loading && !user) {
-  //     return navigate('/');
-  //   }
-  //   // eslint-disable-next-line
-  // }, [user, loading]);
 
   useEffect(() => {
-    const getUserInfo = async () => {
-      getDoc(doc(db, 'users', user?.uid))
+    const getUserInfo = async userId => {
+      getDoc(doc(db, 'users', userId))
         .then(resp => {
-          setProfileInfo(resp.data())
+          setProfileInfo(resp.data());
         })
         .catch(err => {
           console.log(err);
         });
     };
-    getUserInfo();
-  }, [user]);
 
+    onAuthStateChanged(auth, currentUser => {
+      getUserInfo(currentUser.uid);
+    });
+  }, [user]);
 
   if (loading && !user) {
     return (
@@ -54,8 +45,8 @@ export const ProfileDashboard = () => {
     <Layout>
       <NavBar />
       <VStack>
-        <Heading>Welcome {profileInfo.firstName}</Heading>
-        <Text>Email: {profileInfo.email}</Text>
+        <Heading>Welcome {profileInfo?.firstName}</Heading>
+        <Text>Email: {user?.email}</Text>
         <Button
           onClick={() => {
             signOut(auth)

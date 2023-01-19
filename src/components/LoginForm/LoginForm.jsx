@@ -85,7 +85,7 @@ export const LoginForm = () => {
           {loginError === 'auth/wrong-password' && (
             <Text>Password is incorrect</Text>
           )}
-          {loginError?.contains('too-many-requests') && (
+          {loginError?.includes('too-many-requests') && (
             <Text>
               Your account has been temporarily locked, try again later
             </Text>
