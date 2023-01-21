@@ -2,13 +2,26 @@ import {
   Box,
   Button,
   Flex,
+  FormControl,
   FormLabel,
   Heading,
   HStack,
   Input,
-  Text
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Text,
+  useDisclosure,
+  useToast
 } from '@chakra-ui/react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword
+} from 'firebase/auth';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -17,6 +30,9 @@ import { auth } from '../../Firebase';
 export const LoginForm = () => {
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState(null);
+  const [loginInfo, setLoginInfo] = useState(null);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
 
   const {
     register,
@@ -45,6 +61,27 @@ export const LoginForm = () => {
         console.log(errorMessage);
       });
 
+  const handleForgotEmail = e => {
+    console.log(e.target.value);
+    setLoginInfo(e.target.value);
+  };
+
+  const handleForgotSubmit = e => {
+    e.preventDefault();
+    console.log('Email', loginInfo);
+    sendPasswordResetEmail(auth, loginInfo)
+      .then(() => {
+        // Password reset email sent!
+        console.log('Password reset worked');
+        // ..
+      })
+      .catch(error => {
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+        // ..
+      });
+  };
+
   return (
     <Flex justify="center" align="center">
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -70,9 +107,9 @@ export const LoginForm = () => {
           </Box>
           <HStack justify="space-between" pt="0.5rem">
             {/* <Checkbox {...register('remember')}>Remember me</Checkbox> */}
-            {/* <Link as={ReachLink} to="/" _hover={{ textDecoration: 'none' }}>
+            <Button onClick={onOpen} variant="link">
               <Text textColor="blue.300">Forgot password</Text>
-            </Link> */}
+            </Button>
           </HStack>
           <Button w={['15rem', '15rem', '30rem']} type="submit" mt="0.5rem">
             Login
@@ -92,6 +129,41 @@ export const LoginForm = () => {
           )}
         </Flex>
       </form>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <form onSubmit={handleForgotSubmit}>
+          <ModalContent>
+            <ModalHeader>Forgot Password</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody pb={6}>
+              <FormControl>
+                <FormLabel>Email</FormLabel>
+                <Input onChange={handleForgotEmail} placeholder="Email" />
+              </FormControl>
+            </ModalBody>
+            <ModalFooter>
+              <Button
+                onClick={() => {
+                  onClose();
+                  toast({
+                    title: 'Password has been reset.',
+                    description: "Check your email to reset your password.",
+                    status: 'success',
+                    duration: 9000,
+                    isClosable: true,
+                  });
+                }}
+                type="submit"
+                colorScheme="blue"
+                mr={3}
+              >
+                Reset Password
+              </Button>
+              <Button onClick={onClose}>Cancel</Button>
+            </ModalFooter>
+          </ModalContent>
+        </form>
+      </Modal>
     </Flex>
   );
 };

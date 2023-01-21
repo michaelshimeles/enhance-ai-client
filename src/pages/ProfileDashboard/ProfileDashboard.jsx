@@ -1,28 +1,28 @@
 import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
   Box,
   Button,
   Flex,
   FormLabel,
   Heading,
   Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
   Progress,
   Text,
   useDisclosure,
 } from '@chakra-ui/react';
+import { signOut } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/Layout/Layout';
 import { NavBar } from '../../components/NavBar/NavBar';
-import { signOut } from 'firebase/auth';
 // eslint-disable-next-line
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged, updateEmail } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -31,13 +31,28 @@ import { auth, db } from '../../Firebase';
 export const ProfileDashboard = () => {
   const [profileInfo, setProfileInfo] = useState({});
   const [user, loading] = useAuthState(auth);
+  const [emailChange, setEmailChange] = useState(false);
   const navigate = useNavigate();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { onClose } = useDisclosure();
 
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = data => {
     console.log(data);
+    updateEmail(auth.currentUser, data.email)
+      .then(() => {
+        // Email updated!
+        console.log('Email updated');
+        setEmailChange(true);
+      })
+      .catch(error => {
+        // An error occurred
+        // ...
+      });
   };
 
   useEffect(() => {
@@ -45,6 +60,7 @@ export const ProfileDashboard = () => {
       getDoc(doc(db, 'users', userId))
         .then(resp => {
           setProfileInfo(resp.data());
+          setEmailChange(false);
         })
         .catch(err => {
           console.log(err);
@@ -84,7 +100,7 @@ export const ProfileDashboard = () => {
           <Text>Email: {user?.email}</Text>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Flex direction="column" pt="1rem" gap="0.5rem">
-              <Box>
+              {/* <Box>
                 <FormLabel>First Name</FormLabel>
 
                 <Input
@@ -101,8 +117,17 @@ export const ProfileDashboard = () => {
                   {...register('lastName', { required: true })}
                   w={['15rem', '15rem', '30rem']}
                 />
+              </Box> */}
+              <Box>
+                <FormLabel>Email</FormLabel>
+
+                <Input
+                  type="text"
+                  {...register('email', { required: true })}
+                  w={['15rem', '15rem', '30rem']}
+                />
               </Box>
-              <Button onClick={onOpen} w="20%">
+              <Button type="submit" w="20%">
                 Save Changes
               </Button>
               <Button
@@ -121,26 +146,26 @@ export const ProfileDashboard = () => {
               >
                 Sign Out
               </Button>
-              <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent>
-                  <ModalHeader>Modal Title</ModalHeader>
-                  <ModalCloseButton />
-                  <ModalBody>
-                    Are you sure you want to make these changes?
-                  </ModalBody>
-
-                  <ModalFooter>
-                    <Button type="submit" variant="ghost" onClick={onClose}>
-                      Save Changes
-                    </Button>
-                  </ModalFooter>
-                </ModalContent>
-              </Modal>
+              {errors.email && <Text>Email field is required</Text>}
+              {errors.password && <Text>Password field is required</Text>}
             </Flex>
           </form>
         </Flex>
       </Flex>
+      <Modal isOpen={emailChange} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Email has been changed</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>Email has been changed. Congrats Mike it works.</ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Layout>
   );
 };

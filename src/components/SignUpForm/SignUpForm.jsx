@@ -6,9 +6,12 @@ import {
   Heading,
   Input,
   Progress,
-  Text
+  Text,
 } from '@chakra-ui/react';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
@@ -55,6 +58,12 @@ export const SignUpForm = () => {
           .catch(error => {
             console.log(error.message);
           });
+
+        sendEmailVerification(auth.currentUser).then(() => {
+          // Email verification sent!
+          console.log("Email sent")
+          // ...
+        });
 
         // addDoc(database, newData)
         //   .then(() => {
