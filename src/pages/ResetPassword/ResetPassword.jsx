@@ -80,7 +80,7 @@ export const ResetPassword = () => {
             <Heading textAlign="center">Reset Password</Heading>
             <Flex direction="column" pt="1rem" gap="0.5rem">
               <Input
-                type="text"
+                type="password"
                 {...register('password', { required: true })}
                 w={['15rem', '15rem', '30rem']}
               />
