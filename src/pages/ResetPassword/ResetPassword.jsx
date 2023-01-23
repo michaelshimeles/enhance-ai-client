@@ -40,24 +40,7 @@ export const ResetPassword = () => {
 
         // Save the new password.
         confirmPasswordReset(auth, oobCode, newPassword)
-          .then(resp => {
-            console.log('Confirm Password Reset Response', resp);
-            if (!resp) {
-              toast({
-                title: 'It didnt work',
-                description:
-                  'Hit up Michael or Zain (Actually dont bother). Nigga',
-                status: 'error',
-                isClosable: true,
-              });
-              return;
-            }
-            toast({
-              title: 'Password has been reset',
-              description: 'Please login with new password',
-              status: 'success',
-              isClosable: true,
-            });
+          .then(() => {
             // Password reset has been confirmed and new password updated.
             // TODO: Display a link back to the app, or sign-in the user directly
             // if the page belongs to the same domain as the app:
@@ -68,6 +51,12 @@ export const ResetPassword = () => {
             navigate(continueUrl);
           })
           .catch(error => {
+            toast({
+              title: 'It didnt work',
+              description: 'Please try again later',
+              status: 'error',
+              isClosable: true,
+            });
             // Error occurred during confirmation. The code might have expired or the
             // password is too weak.
             console.log(error);
