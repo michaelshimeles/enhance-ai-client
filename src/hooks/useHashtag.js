@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 
 const fetchHashtags = ({ queryKey }) => {
   const data = queryKey[1];
-  return axios.get(`${process.env.REACT_APP_URL}/captions/hashtags`, {
+  return axios.get(`${process.env.REACT_API_URL}/captions/hashtags`, {
     params: {
       niche: data.niche,
     },

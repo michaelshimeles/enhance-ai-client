@@ -26,7 +26,6 @@ function App() {
           <Route path="/dashboard" element={<ProfileDashboard />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/reset-password" element={<ResetPassword />} />
-
           <Route path="*" element={<Home />} />
         </Routes>
       </BrowserRouter>

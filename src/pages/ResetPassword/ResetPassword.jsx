@@ -2,12 +2,19 @@ import { Button, Flex, Heading, Input, Text, useToast } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { Layout } from '../../components/Layout/Layout';
 import { verifyPasswordResetCode, confirmPasswordReset } from 'firebase/auth';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { auth } from '../../Firebase';
+import { useQuery } from '../../utils/useQuery';
 
 export const ResetPassword = () => {
+  const query = useQuery();
+
   // eslint-disable-next-line
-  const { mode, actionCode, continueUrl, lang } = useParams();
+  //mode, actionCode, continueUrl, lang
+  const mode = query.get('mode');
+  const actionCode = query.get('actionCode');
+  const continueUrl = query.get('continueUrl');
+
   const navigate = useNavigate();
   const toast = useToast();
 
