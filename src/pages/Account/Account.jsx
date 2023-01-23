@@ -1,4 +1,3 @@
-import { NavBar } from '../../components/NavBar/NavBar';
 import { Layout } from '../../components/Layout/Layout';
 import {
   Flex,
@@ -15,7 +14,6 @@ import { LoginForm } from '../../components/LoginForm/LoginForm';
 export const Account = () => {
   return (
     <Layout>
-      <NavBar />
       <Flex justify="center" align="center" pt="4rem">
         <Tabs variant="soft-rounded" colorScheme="blue">
           <TabList>

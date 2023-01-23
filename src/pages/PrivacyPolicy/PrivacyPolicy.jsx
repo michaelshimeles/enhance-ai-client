@@ -1,11 +1,9 @@
 import { Flex, Heading, Text, VStack } from '@chakra-ui/react';
 import { Layout } from '../../components/Layout/Layout';
-import { NavBar } from '../../components/NavBar/NavBar';
 
 export const PrivacyPolicy = () => {
   return (
     <Layout>
-      <NavBar />
       <VStack>
         <Flex direction="column" justify="center" align="center" w="80%">
           <Heading>Privacy Policy</Heading>

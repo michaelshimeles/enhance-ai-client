@@ -44,7 +44,7 @@ export const LoginForm = () => {
   //   console.log(currentUser);
   // });
 
-  const onSubmit = data =>
+  const onSubmit = data => {
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then(userCredential => {
         // Signed in
@@ -60,6 +60,7 @@ export const LoginForm = () => {
         console.log(error);
         console.log(errorMessage);
       });
+  };
 
   const handleForgotEmail = e => {
     console.log(e.target.value);
@@ -108,7 +109,6 @@ export const LoginForm = () => {
             />
           </Box>
           <HStack justify="space-between" pt="0.5rem">
-            {/* <Checkbox {...register('remember')}>Remember me</Checkbox> */}
             <Button onClick={onOpen} variant="link">
               <Text textColor="blue.300">Forgot password</Text>
             </Button>

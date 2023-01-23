@@ -11,7 +11,6 @@ import {
   Text,
   Progress
 } from '@chakra-ui/react';
-import { NavBar } from '../../components/NavBar/NavBar';
 import { ResumeFixer } from '../../components/ResumeFixer/ResumeFixer';
 import { CoverLetter } from '../../components/CoverLetter/CoverLetter';
 import { auth } from '../../Firebase';
@@ -34,7 +33,6 @@ export const ResumeBuilder = () => {
   return (
     <Layout>
       <Flex direction="column" justify="center" align="center" pb="5rem">
-        <NavBar />
         <Heading py="1rem">Resume Builder</Heading>
         <Box
           direction="column"

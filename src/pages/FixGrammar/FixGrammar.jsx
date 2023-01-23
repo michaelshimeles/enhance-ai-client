@@ -1,7 +1,6 @@
 import { Flex, Heading, Progress } from '@chakra-ui/react';
 import { GrammarForm } from '../../components/GrammarForm/GrammarForm';
 import { Layout } from '../../components/Layout/Layout';
-import { NavBar } from '../../components/NavBar/NavBar';
 import { auth } from '../../Firebase';
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -21,7 +20,6 @@ export const FixGrammar = () => {
   return (
     <Layout>
       <Flex direction="column" justify="center" align="center" pb="5rem">
-        <NavBar />
         <Flex
           direction="column"
           justify="center"

@@ -24,7 +24,6 @@ import {
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/Layout/Layout';
-import { NavBar } from '../../components/NavBar/NavBar';
 // eslint-disable-next-line
 import { onAuthStateChanged, updateEmail } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
@@ -122,7 +121,6 @@ export const ProfileDashboard = () => {
 
   return !user ? null : (
     <Layout>
-      <NavBar />
       <Flex justify="center" align="center" w="100%">
         <Flex
           direction="column"

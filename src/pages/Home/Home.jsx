@@ -11,7 +11,6 @@ import {
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { HeroSection } from '../../components/HeroSection/HeroSection';
 import { Layout } from '../../components/Layout/Layout';
-import { NavBar } from '../../components/NavBar/NavBar';
 import { NewCard } from '../../components/NewCard/NewCard';
 import { fixGrammar } from '../../info/FixGrammar';
 import { igCaption } from '../../info/InstagramCaptions';
@@ -21,7 +20,6 @@ export const Home = () => {
   return (
     <Layout>
       <Flex direction="column" justify="center" align="center" w="full" wrap="wrap">
-        <NavBar />
         <HeroSection />
         <Hide below="lg">
           <Flex

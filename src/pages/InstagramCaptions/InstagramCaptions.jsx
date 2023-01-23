@@ -11,7 +11,6 @@ import {
 } from '@chakra-ui/react';
 import { CaptionForm } from '../../components/CaptionForm/CaptionForm';
 import { Layout } from '../../components/Layout/Layout';
-import { NavBar } from '../../components/NavBar/NavBar';
 import { GenericCaption } from '../../components/GenericCaption/GenericCaption';
 import { HashtagGenerator } from '../../components/HashtagGenerator/HashtagGenerator';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -33,7 +32,6 @@ export const InstagramCaptions = () => {
   return (
     <Layout>
       <Flex direction="column" justify="center" align="center" pb="5rem">
-        <NavBar />
         <Heading py="1rem">Caption Generator</Heading>
         <Box
           direction="column"

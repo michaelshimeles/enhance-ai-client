@@ -7,14 +7,8 @@ import { Home } from './pages/Home/Home';
 import { InstagramCaptions } from './pages/InstagramCaptions/InstagramCaptions';
 import { PrivacyPolicy } from './pages/PrivacyPolicy/PrivacyPolicy';
 import { ProfileDashboard } from './pages/ProfileDashboard/ProfileDashboard';
+import { ResetPassword } from './pages/ResetPassword/ResetPassword';
 import { ResumeBuilder } from './pages/ResumeBuilder/ResumeBuilder';
-// import {
-//   RecoilRoot,
-//   atom,
-//   selector,
-//   useRecoilState,
-//   useRecoilValue,
-// } from 'recoil';
 
 const queryClient = new QueryClient();
 
@@ -22,19 +16,21 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* <RecoilRoot> */}
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/account" element={<Account />} />
-            <Route path="/captions" element={<InstagramCaptions />} />
-            <Route path="/grammar" element={<FixGrammar />} />
-            <Route path="/resume" element={<ResumeBuilder />} />
-            <Route path="/dashboard" element={<ProfileDashboard />} />
-            <Route path="/privacy" element={<PrivacyPolicy />} />
-            <Route path="*" element={<Home />} />
-          </Routes>
-        </BrowserRouter>
-        <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/account" element={<Account />} />
+          <Route path="/captions" element={<InstagramCaptions />} />
+          <Route path="/grammar" element={<FixGrammar />} />
+          <Route path="/resume" element={<ResumeBuilder />} />
+          <Route path="/dashboard" element={<ProfileDashboard />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
+      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
       {/* </RecoilRoot> */}
     </QueryClientProvider>
   );

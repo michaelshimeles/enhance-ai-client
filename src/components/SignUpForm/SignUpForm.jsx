@@ -65,16 +65,7 @@ export const SignUpForm = () => {
         sendEmailVerification(auth.currentUser).then(() => {
           // Email verification sent!
           console.log('Email sent');
-          // ...
         });
-
-        // addDoc(database, newData)
-        //   .then(() => {
-        //     console.log('Data sent to db');
-        //   })
-        //   .catch(error => {
-        //     console.log(error.message);
-        //   });
       })
       .catch(error => {
         const errorCode = error.code;
