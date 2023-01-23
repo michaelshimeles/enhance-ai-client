@@ -15,7 +15,6 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      {/* <RecoilRoot> */}
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -30,7 +29,6 @@ function App() {
         </Routes>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
-      {/* </RecoilRoot> */}
     </QueryClientProvider>
   );
 }
