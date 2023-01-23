@@ -16,11 +16,11 @@ import {
   ModalOverlay,
   Text,
   useDisclosure,
-  useToast
+  useToast,
 } from '@chakra-ui/react';
 import {
   sendPasswordResetEmail,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -69,7 +69,9 @@ export const LoginForm = () => {
 
   const handleForgotSubmit = e => {
     e.preventDefault();
-    sendPasswordResetEmail(auth, loginInfo)
+    sendPasswordResetEmail(auth, loginInfo, {
+      url: `${process.env.REACT_APP_URL}/login`,
+    })
       .then(() => {
         // Password reset email sent!
         console.log('Password reset worked');
