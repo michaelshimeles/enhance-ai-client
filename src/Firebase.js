@@ -1,8 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { getAnalytics } from 'firebase/analytics';
 import { initializeApp } from 'firebase/app';
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getAuth } from 'firebase/auth';
+// import { getStorage, ref } from 'firebase/storage';
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -22,3 +23,9 @@ const analytics = getAnalytics(app);
 export const auth = getAuth(app);
 
 export const db = getFirestore(app);
+
+// Get a reference to the storage service, which is used to create references in your storage bucket
+// const storage = getStorage();
+
+// Create a storage reference from our storage service
+// const storageRef = ref(storage);

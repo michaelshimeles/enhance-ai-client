@@ -68,7 +68,6 @@ export const LoginForm = () => {
 
   const handleForgotSubmit = e => {
     e.preventDefault();
-    console.log('Email', loginInfo);
     sendPasswordResetEmail(auth, loginInfo)
       .then(() => {
         // Password reset email sent!
@@ -76,9 +75,10 @@ export const LoginForm = () => {
         // ..
       })
       .catch(error => {
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        // ..
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log('ErrorCode Login', errorCode);
+        console.log('ErrorMessage Login', errorMessage);
       });
   };
 
@@ -90,10 +90,12 @@ export const LoginForm = () => {
         <Flex direction="column" pt="1rem" gap="0.5rem">
           <Box>
             <FormLabel>Email address</FormLabel>
-
             <Input
               type="email"
-              {...register('email', { required: true })}
+              {...register('email', {
+                required: true,
+                pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+              })}
               w={['15rem', '15rem', '30rem']}
             />
           </Box>
@@ -147,7 +149,7 @@ export const LoginForm = () => {
                   onClose();
                   toast({
                     title: 'Password has been reset.',
-                    description: "Check your email to reset your password.",
+                    description: 'Check your email to reset your password.',
                     status: 'success',
                     duration: 9000,
                     isClosable: true,

@@ -1,22 +1,26 @@
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  Box,
   Button,
   Flex,
+  FormControl,
   FormLabel,
   Heading,
   Input,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   Progress,
   Text,
-  useDisclosure,
+  useDisclosure
 } from '@chakra-ui/react';
-import { signOut } from 'firebase/auth';
+import {
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+  signOut
+} from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/Layout/Layout';
@@ -31,9 +35,19 @@ import { auth, db } from '../../Firebase';
 export const ProfileDashboard = () => {
   const [profileInfo, setProfileInfo] = useState({});
   const [user, loading] = useAuthState(auth);
+  // eslint-disable-next-line
   const [emailChange, setEmailChange] = useState(false);
   const navigate = useNavigate();
-  const { onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const OverlayOne = () => (
+    <ModalOverlay
+      bg="blackAlpha.300"
+      backdropFilter="blur(10px) hue-rotate(90deg)"
+    />
+  );
+
+  const [overlay, setOverlay] = useState(<OverlayOne />);
 
   const {
     register,
@@ -41,17 +55,41 @@ export const ProfileDashboard = () => {
     formState: { errors },
   } = useForm();
 
+  const userInfo = auth.currentUser;
+  console.log(userInfo);
+
   const onSubmit = data => {
     console.log(data);
-    updateEmail(auth.currentUser, data.email)
+    console.log('auth.currentUser.email', auth.currentUser.email);
+
+    const credential = EmailAuthProvider.credential(
+      auth.currentUser.email,
+      data.password
+    );
+
+    reauthenticateWithCredential(auth.currentUser, credential)
       .then(() => {
-        // Email updated!
-        console.log('Email updated');
-        setEmailChange(true);
+        // User re-authenticated.
+        console.log('User re-authenticated');
+        updateEmail(auth.currentUser, data.newEmail)
+          .then(() => {
+            // Email updated!
+            console.log('Email updated');
+            setEmailChange(true);
+          })
+          .catch(error => {
+            // An error occurred
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log('ErrorCode Change Email', errorCode);
+            console.log('ErrorMessage Change Email', errorMessage);
+
+            // ...
+          });
       })
       .catch(error => {
-        // An error occurred
-        // ...
+        // An error ocurred
+        console.log(error);
       });
   };
 
@@ -97,75 +135,80 @@ export const ProfileDashboard = () => {
             Welcome {profileInfo?.firstName} {profileInfo?.lastName}
           </Heading>
 
-          <Text>Email: {user?.email}</Text>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Flex direction="column" pt="1rem" gap="0.5rem">
-              {/* <Box>
-                <FormLabel>First Name</FormLabel>
+          <Text fontWeight="semibold">{user?.email}</Text>
+          <Flex direction="column" pt="1rem" gap="0.5rem">
+            <Button
+              w={['15rem', '15rem', '30rem']}
+              onClick={() => {
+                setOverlay(<OverlayOne />);
+                onOpen();
+              }}
+            >
+              Change Email
+            </Button>
+            <Button
+              colorScheme="red"
+              onClick={() => {
+                signOut(auth)
+                  .then(() => {
+                    // Sign-out successful.
+                    console.log('Successful Log');
+                  })
+                  .catch(error => {
+                    // An error happened.
+                    console.log(error);
+                  });
+              }}
+              w={['15rem', '15rem', '30rem']}
+            >
+              Sign Out
+            </Button>
+            {errors.email && <Text>Email field is required</Text>}
+            {errors.password && <Text>Password field is required</Text>}
+          </Flex>
+          <Modal isCentered isOpen={isOpen} onClose={onClose}>
+            {overlay}
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <ModalContent>
+                <ModalHeader>Confirm change by logging in</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody>
+                  <FormControl>
+                    <FormLabel>Email</FormLabel>
+                    <Input
+                      {...register('email', { required: true })}
+                      placeholder="Email"
+                      type="text"
+                    />
+                  </FormControl>
 
-                <Input
-                  type="text"
-                  {...register('firstName', { required: true })}
-                  w={['15rem', '15rem', '30rem']}
-                />
-              </Box>
-              <Box>
-                <FormLabel>Last Name</FormLabel>
-
-                <Input
-                  type="text"
-                  {...register('lastName', { required: true })}
-                  w={['15rem', '15rem', '30rem']}
-                />
-              </Box> */}
-              <Box>
-                <FormLabel>Email</FormLabel>
-
-                <Input
-                  type="text"
-                  {...register('email', { required: true })}
-                  w={['15rem', '15rem', '30rem']}
-                />
-              </Box>
-              <Button type="submit" w="20%">
-                Save Changes
-              </Button>
-              <Button
-                onClick={() => {
-                  signOut(auth)
-                    .then(() => {
-                      // Sign-out successful.
-                      console.log('Successful Log');
-                    })
-                    .catch(error => {
-                      // An error happened.
-                      console.log(error);
-                    });
-                }}
-                w="20%"
-              >
-                Sign Out
-              </Button>
-              {errors.email && <Text>Email field is required</Text>}
-              {errors.password && <Text>Password field is required</Text>}
-            </Flex>
-          </form>
+                  <FormControl mt={4}>
+                    <FormLabel>Password</FormLabel>
+                    <Input
+                      {...register('password', { required: true })}
+                      placeholder="Password"
+                      type="password"
+                    />
+                  </FormControl>
+                  <FormControl mt={4}>
+                    <FormLabel>New Email</FormLabel>
+                    <Input
+                      {...register('newEmail', { required: true })}
+                      placeholder="New Email"
+                      type="text"
+                    />
+                  </FormControl>
+                </ModalBody>
+                <ModalFooter>
+                  <Button type="submit" onClick={onClose}>
+                    Change
+                  </Button>
+                </ModalFooter>
+              </ModalContent>
+            </form>
+          </Modal>
         </Flex>
       </Flex>
-      <Modal isOpen={emailChange} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Email has been changed</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>Email has been changed. Congrats Mike it works.</ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
     </Layout>
   );
 };

@@ -18,6 +18,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../Firebase';
 import { Layout } from '../Layout/Layout';
+
 export const SignUpForm = () => {
   const navigate = useNavigate();
   const [user, loading] = useAuthState(auth);
@@ -47,6 +48,8 @@ export const SignUpForm = () => {
       lastName: data.lastName,
       email: data.email,
     };
+
+    // let res = await validate(data.email)
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then(userCredential => {
         // Signed in
@@ -61,7 +64,7 @@ export const SignUpForm = () => {
 
         sendEmailVerification(auth.currentUser).then(() => {
           // Email verification sent!
-          console.log("Email sent")
+          console.log('Email sent');
           // ...
         });
 
@@ -112,7 +115,10 @@ export const SignUpForm = () => {
               <FormLabel>Email address</FormLabel>
               <Input
                 type="email"
-                {...register('email', { required: true })}
+                {...register('email', {
+                  required: true,
+                  pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                })}
                 w={['15rem', '15rem', '30rem']}
               />
             </Box>
