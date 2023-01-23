@@ -12,7 +12,7 @@ export const ResetPassword = () => {
   // eslint-disable-next-line
   //mode, actionCode, continueUrl, lang
   const mode = query.get('mode');
-  const actionCode = query.get('actionCode');
+  const oobCode = query.get('oobCode');
   const continueUrl = query.get('continueUrl');
 
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ export const ResetPassword = () => {
 
   const onSubmit = data => {
     console.log(data);
-    verifyPasswordResetCode(auth, actionCode)
+    verifyPasswordResetCode(auth, oobCode)
       .then(() => {
         // const accountEmail = email;
 
@@ -39,7 +39,7 @@ export const ResetPassword = () => {
         const newPassword = data.password;
 
         // Save the new password.
-        confirmPasswordReset(auth, actionCode, newPassword)
+        confirmPasswordReset(auth, oobCode, newPassword)
           .then(resp => {
             console.log('Confirm Password Reset Response', resp);
             if (!resp) {
