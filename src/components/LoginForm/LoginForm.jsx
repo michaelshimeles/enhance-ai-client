@@ -70,7 +70,7 @@ export const LoginForm = () => {
   const handleForgotSubmit = e => {
     e.preventDefault();
     sendPasswordResetEmail(auth, loginInfo, {
-      url: `/login`,
+      url: `${process.env.REACT_APP_URL}/login`,
     })
       .then(() => {
         // Password reset email sent!
