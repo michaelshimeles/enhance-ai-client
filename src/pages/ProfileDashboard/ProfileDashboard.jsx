@@ -11,8 +11,7 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
-  ModalOverlay,
-  Progress,
+  ModalOverlay, Spinner,
   Text,
   useDisclosure
 } from '@chakra-ui/react';
@@ -111,9 +110,9 @@ export const ProfileDashboard = () => {
 
   if (loading && !user) {
     return (
-      <Layout>
-        <Progress size="xs" isIndeterminate />
-      </Layout>
+      <Flex justify="center" align="center" h="50vh">
+        <Spinner />
+      </Flex>
     );
   } else if (!loading && !user) {
     return navigate('/account');
