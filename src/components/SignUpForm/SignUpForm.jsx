@@ -18,10 +18,12 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../Firebase';
 import { Layout } from '../Layout/Layout';
+import { useState } from 'react';
 
 export const SignUpForm = () => {
   const navigate = useNavigate();
   const [user, loading] = useAuthState(auth);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   // Sign in with google
   // const provider = new GoogleAuthProvider();
@@ -68,6 +70,7 @@ export const SignUpForm = () => {
         });
       })
       .catch(error => {
+        setErrorMessage(error)
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
@@ -126,6 +129,7 @@ export const SignUpForm = () => {
             </Button>
             {errors.email && <Text>Email field is required</Text>}
             {errors.password && <Text>Password field is required</Text>}
+            {errorMessage?.code === "auth/email-already-in-use" && <Text>Email already in use. Please login</Text>}
           </Flex>
         </form>
       </Flex>
