@@ -29,6 +29,7 @@ export const NewCard = ({ image, description, title, link, cta, launched }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
 
+  console.log("Email", user?.emailVerified)
   return (
     <Link
       as={ReachLink}

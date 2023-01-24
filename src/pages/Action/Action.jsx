@@ -107,6 +107,7 @@ export const Action = () => {
 
         break;
       case 'verifyEmail':
+        console.log('We in the case');
         // Try to apply the email verification code.
         applyActionCode(auth, oobCode)
           .then(resp => {
@@ -115,6 +116,12 @@ export const Action = () => {
           .catch(error => {
             // Code is invalid or expired. Ask the user to verify their email address
             // again.
+            toast({
+              title: 'It didnt work',
+              description: 'Please try again later',
+              status: 'error',
+              isClosable: true,
+            });
             console.log('Verify Email Error', error);
           });
 
@@ -164,8 +171,13 @@ export const Action = () => {
                   </Text>
                 </CardBody>
                 <CardFooter>
+                  <Button type="submit" colorScheme="blue">
+                    Recover
+                  </Button>
                   <Link to="/">
-                    <Button colorScheme="blue">Go Home</Button>
+                    <Button type="submit" colorScheme="blue">
+                      Go Home
+                    </Button>
                   </Link>
                 </CardFooter>
               </Card>
@@ -187,9 +199,28 @@ export const Action = () => {
                   </Text>
                 </CardBody>
                 <CardFooter>
-                  <Link to="/">
-                    <Button colorScheme="blue">Go Home</Button>
-                  </Link>
+                  <Flex justify="center" align="center" gap="2rem">
+                    <Button
+                      type="submit"
+                      colorScheme="blue"
+                      onClick={() => {
+                        toast({
+                          title: 'Verification worked',
+                          description:
+                            'You have been verified, please click on "Go Home',
+                          status: 'success',
+                          isClosable: true,
+                        });
+                      }}
+                    >
+                      Verify
+                    </Button>
+                    <Link to="/">
+                      <Button type="submit" colorScheme="blue">
+                        Go Home
+                      </Button>
+                    </Link>
+                  </Flex>
                 </CardFooter>
               </Card>
             </form>
