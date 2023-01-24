@@ -1,14 +1,26 @@
-import { Button, Flex, Heading, Input, Text, useToast } from '@chakra-ui/react';
-import { useForm } from 'react-hook-form';
-import { Layout } from '../../components/Layout/Layout';
 import {
-  verifyPasswordResetCode,
-  confirmPasswordReset,
-  checkActionCode,
+  Button,
+  Flex,
+  Heading,
+  Input,
+  Text,
+  useToast,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+} from '@chakra-ui/react';
+import {
   applyActionCode,
+  checkActionCode,
+  confirmPasswordReset,
   sendPasswordResetEmail,
+  verifyPasswordResetCode,
 } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+import { Layout } from '../../components/Layout/Layout';
 import { auth } from '../../Firebase';
 import { useQuery } from '../../utils/useQuery';
 
@@ -21,20 +33,16 @@ export const Action = () => {
   const oobCode = query.get('oobCode');
   const continueUrl = query.get('continueUrl');
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const toast = useToast();
 
-  console.log("Mode", mode)
+  console.log('Mode', mode);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  if (mode !== 'resetPassword') {
-    return navigate('/');
-  }
 
   const onSubmit = data => {
     console.log(data);
@@ -72,8 +80,8 @@ export const Action = () => {
             // Get the restored email address.
             restoredEmail = info['data']['email'];
 
-            console.log("Recover Email", info)
-            console.log("restoredEmail", restoredEmail)
+            console.log('Recover Email', info);
+            console.log('restoredEmail', restoredEmail);
             // Revert to the old email.
             return applyActionCode(auth, oobCode);
           })
@@ -85,9 +93,9 @@ export const Action = () => {
             // You might also want to give the user the option to reset their password
             // in case the account was compromised:
             sendPasswordResetEmail(auth, restoredEmail)
-              .then((resp) => {
+              .then(resp => {
                 // Password reset confirmation sent. Ask user to check their email.
-                console.log("Recover Password reset confirmation sent", resp)
+                console.log('Recover Password reset confirmation sent', resp);
               })
               .catch(error => {
                 // Error encountered while sending password reset code.
@@ -99,9 +107,6 @@ export const Action = () => {
 
         break;
       case 'verifyEmail':
-        // Display email verification handler and UI.
-        // Localize the UI to the selected language as determined by the lang
-        // parameter.
         // Try to apply the email verification code.
         applyActionCode(auth, oobCode)
           .then(resp => {
@@ -120,13 +125,9 @@ export const Action = () => {
     }
   };
 
-  // Pull query params from redirect link
-
-  // onSubmit import { verifyPasswordResetCode, confirmPasswordReset } from "firebase/auth";
-
   return (
     <Layout>
-      {mode === 'resetPassword' && (
+      {mode === 'resetPassword' ? (
         <Flex direction="column" pt="3rem">
           <Flex justify="center" align="center">
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -149,24 +150,53 @@ export const Action = () => {
             </form>
           </Flex>
         </Flex>
-      )}
-      {mode === 'recoverEmail' && (
+      ) : mode === 'recoverEmail' ? (
         <Flex direction="column" pt="3rem">
           <Flex justify="center" align="center">
             <form onSubmit={handleSubmit(onSubmit)}>
-              <Heading textAlign="center">Recover Email</Heading>
+              <Card align="center">
+                <CardHeader>
+                  <Heading size="md"> Recover Email</Heading>
+                </CardHeader>
+                <CardBody>
+                  <Text>
+                    Please contact support @ michaelwasihun96@gmail.com
+                  </Text>
+                </CardBody>
+                <CardFooter>
+                  <Link to="/">
+                    <Button colorScheme="blue">Go Home</Button>
+                  </Link>
+                </CardFooter>
+              </Card>
             </form>
           </Flex>
         </Flex>
-      )}
-      {mode === 'verifyEmail' && (
+      ) : mode === 'verifyEmail' ? (
         <Flex direction="column" pt="3rem">
           <Flex justify="center" align="center">
             <form onSubmit={handleSubmit(onSubmit)}>
-              <Heading textAlign="center">Reset Password</Heading>
+              <Card align="center">
+                <CardHeader>
+                  <Heading size="md"> Verify Email</Heading>
+                </CardHeader>
+                <CardBody>
+                  <Text>
+                    Congratulations, your email address has been successfully
+                    verified and is now ready for use.
+                  </Text>
+                </CardBody>
+                <CardFooter>
+                  <Link to="/">
+                    <Button colorScheme="blue">Go Home</Button>
+                  </Link>
+                </CardFooter>
+              </Card>
             </form>
           </Flex>
         </Flex>
+      ) : (
+        <></>
       )}
     </Layout>
   );
