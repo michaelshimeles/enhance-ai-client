@@ -35,8 +35,6 @@ export const Action = () => {
   // const navigate = useNavigate();
   const toast = useToast();
 
-  console.log('Mode', mode);
-
   const {
     register,
     handleSubmit,
@@ -44,7 +42,6 @@ export const Action = () => {
   } = useForm();
 
   const onSubmit = data => {
-    console.log(data);
     switch (mode) {
       case 'resetPassword':
         verifyPasswordResetCode(auth, oobCode)
@@ -78,9 +75,6 @@ export const Action = () => {
           .then(info => {
             // Get the restored email address.
             restoredEmail = info['data']['email'];
-
-            console.log('Recover Email', info);
-            console.log('restoredEmail', restoredEmail);
             // Revert to the old email.
             return applyActionCode(auth, oobCode);
           })
@@ -106,7 +100,6 @@ export const Action = () => {
 
         break;
       case 'verifyEmail':
-        console.log('We in the case');
         // Try to apply the email verification code.
         applyActionCode(auth, oobCode)
           .then(resp => {
