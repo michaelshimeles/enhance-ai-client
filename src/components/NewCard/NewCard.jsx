@@ -16,15 +16,18 @@ import {
   useColorModeValue,
   useDisclosure,
   ModalHeader,
+  useToast,
 } from '@chakra-ui/react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link as ReachLink } from 'react-router-dom';
 import { auth } from '../../Firebase';
+import { sendEmailVerification } from 'firebase/auth';
 
 export const NewCard = ({ image, description, title, link, cta, launched }) => {
   const bgColor = useColorModeValue('white', 'blackAlpha.700');
   const [user] = useAuthState(auth);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
 
   return (
     <Link
@@ -137,6 +140,24 @@ export const NewCard = ({ image, description, title, link, cta, launched }) => {
               </Link>
             ) : (
               <></>
+            )}
+            {user?.emailVerified === false && (
+              <Button
+                onClick={() => {
+                  sendEmailVerification(auth?.currentUser).then(() => {
+                    // Email verification sent!
+                    console.log('Email sent');
+                  });
+                  toast({
+                    title: `Verification E-mail Sent`,
+                    position: 'top',
+                    isClosable: true,
+                  });
+                  onClose()
+                }}
+              >
+                Resend Verification
+              </Button>
             )}
           </ModalFooter>
         </ModalContent>
