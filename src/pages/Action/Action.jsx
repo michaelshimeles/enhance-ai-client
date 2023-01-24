@@ -24,6 +24,8 @@ export const Action = () => {
   const navigate = useNavigate();
   const toast = useToast();
 
+  console.log("Mode", mode)
+
   const {
     register,
     handleSubmit,
