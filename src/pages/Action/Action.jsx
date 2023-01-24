@@ -38,25 +38,12 @@ export const Action = () => {
     console.log(data);
     switch (mode) {
       case 'resetPassword':
-        // Display reset password handler and UI.
         verifyPasswordResetCode(auth, oobCode)
           .then(() => {
             // const accountEmail = email;
-
-            // TODO: Show the reset screen with the user's email and ask the user for
-            // the new password.
             const newPassword = data.password;
-
-            // Save the new password.
             confirmPasswordReset(auth, oobCode, newPassword)
               .then(() => {
-                // Password reset has been confirmed and new password updated.
-                // TODO: Display a link back to the app, or sign-in the user directly
-                // if the page belongs to the same domain as the app:
-                // auth.signInWithEmailAndPassword(accountEmail, newPassword);
-                // TODO: If a continue URL is available, display a button which on
-                // click redirects the user back to the app via continueUrl with
-                // additional state determined from that URL's parameters.
                 window.location.replace(continueUrl);
               })
               .catch(error => {
@@ -66,8 +53,6 @@ export const Action = () => {
                   status: 'error',
                   isClosable: true,
                 });
-                // Error occurred during confirmation. The code might have expired or the
-                // password is too weak.
                 console.log(error);
               });
           })
@@ -85,6 +70,8 @@ export const Action = () => {
             // Get the restored email address.
             restoredEmail = info['data']['email'];
 
+            console.log("Recover Email", info)
+            console.log("restoredEmail", restoredEmail)
             // Revert to the old email.
             return applyActionCode(auth, oobCode);
           })
@@ -96,8 +83,9 @@ export const Action = () => {
             // You might also want to give the user the option to reset their password
             // in case the account was compromised:
             sendPasswordResetEmail(auth, restoredEmail)
-              .then(() => {
+              .then((resp) => {
                 // Password reset confirmation sent. Ask user to check their email.
+                console.log("Recover Password reset confirmation sent", resp)
               })
               .catch(error => {
                 // Error encountered while sending password reset code.
@@ -115,20 +103,17 @@ export const Action = () => {
         // Try to apply the email verification code.
         applyActionCode(auth, oobCode)
           .then(resp => {
-            // Email address has been verified.
-            // TODO: Display a confirmation message to the user.
-            // You could also provide the user with a link back to the app.
-            // TODO: If a continue URL is available, display a button which on
-            // click redirects the user back to the app via continueUrl with
-            // additional state determined from that URL's parameters.
+            console.log('Verify Email', resp);
           })
           .catch(error => {
             // Code is invalid or expired. Ask the user to verify their email address
             // again.
+            console.log('Verify Email Error', error);
           });
 
         break;
       default:
+        break;
       // Error: invalid mode.
     }
   };
@@ -139,7 +124,7 @@ export const Action = () => {
 
   return (
     <Layout>
-      {mode === 'resetPassword' ? (
+      {mode === 'resetPassword' && (
         <Flex direction="column" pt="3rem">
           <Flex justify="center" align="center">
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -161,27 +146,25 @@ export const Action = () => {
               </Flex>
             </form>
           </Flex>
-        </Flex> ? (
-          mode === 'recoverEmail'
-        ) : <Flex direction="column" pt="3rem">
-            <Flex justify="center" align="center">
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <Heading textAlign="center">Recover Email</Heading>
-              </form>
-            </Flex>
-          </Flex> ? (
-          mode === 'verifyEmail'
-        ) : (
-          <Flex direction="column" pt="3rem">
-            <Flex justify="center" align="center">
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <Heading textAlign="center">Reset Password</Heading>
-              </form>
-            </Flex>
+        </Flex>
+      )}
+      {mode === 'recoverEmail' && (
+        <Flex direction="column" pt="3rem">
+          <Flex justify="center" align="center">
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Heading textAlign="center">Recover Email</Heading>
+            </form>
           </Flex>
-        )
-      ) : (
-        <></>
+        </Flex>
+      )}
+      {mode === 'verifyEmail' && (
+        <Flex direction="column" pt="3rem">
+          <Flex justify="center" align="center">
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Heading textAlign="center">Reset Password</Heading>
+            </form>
+          </Flex>
+        </Flex>
       )}
     </Layout>
   );
