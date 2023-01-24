@@ -161,23 +161,27 @@ export const Action = () => {
               </Flex>
             </form>
           </Flex>
-        </Flex>
-      ) : mode === 'recoverEmail' ? (
-        <Flex direction="column" pt="3rem">
-          <Flex justify="center" align="center">
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <Heading textAlign="center">Recover Email</Heading>
-            </form>
+        </Flex> ? (
+          mode === 'recoverEmail'
+        ) : <Flex direction="column" pt="3rem">
+            <Flex justify="center" align="center">
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Heading textAlign="center">Recover Email</Heading>
+              </form>
+            </Flex>
+          </Flex> ? (
+          mode === 'verifyEmail'
+        ) : (
+          <Flex direction="column" pt="3rem">
+            <Flex justify="center" align="center">
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Heading textAlign="center">Reset Password</Heading>
+              </form>
+            </Flex>
           </Flex>
-        </Flex>
+        )
       ) : (
-        <Flex direction="column" pt="3rem">
-          <Flex justify="center" align="center">
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <Heading textAlign="center">Reset Password</Heading>
-            </form>
-          </Flex>
-        </Flex>
+        <></>
       )}
     </Layout>
   );
