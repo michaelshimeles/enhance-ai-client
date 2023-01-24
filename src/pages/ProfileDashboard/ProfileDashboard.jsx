@@ -54,12 +54,12 @@ export const ProfileDashboard = () => {
     formState: { errors },
   } = useForm();
 
+  // eslint-disable-next-line
   const userInfo = auth.currentUser;
-  console.log(userInfo);
 
   const onSubmit = data => {
     console.log(data);
-    console.log('auth.currentUser.email', auth.currentUser.email);
+    // console.log('auth.currentUser.email', auth.currentUser.email);
 
     const credential = EmailAuthProvider.credential(
       auth.currentUser.email,

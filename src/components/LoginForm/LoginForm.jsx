@@ -63,7 +63,6 @@ export const LoginForm = () => {
   };
 
   const handleForgotEmail = e => {
-    console.log(e.target.value);
     setLoginInfo(e.target.value);
   };
 

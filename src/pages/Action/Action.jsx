@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { auth } from '../../Firebase';
 import { useQuery } from '../../utils/useQuery';
 
-export const ResetPassword = () => {
+export const Action = () => {
   const query = useQuery();
 
   // eslint-disable-next-line
