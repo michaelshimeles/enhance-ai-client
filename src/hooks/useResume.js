@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const fetchResume = ({ queryKey }) => {
   const data = queryKey[1];
-  return axios.get(`${process.env.REACT_API_URL}/resume`, {
+  return axios.get(`${process.env.REACT_APP_API_URL}/resume`, {
     params: {
       title: data.title,
       company: data.company,

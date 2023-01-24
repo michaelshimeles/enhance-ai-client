@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const fetchCoverLetter = ({ queryKey }) => {
   const data = queryKey[1];
-  return axios.get(`${process.env.REACT_API_URL}/resume/coverletter`, {
+  return axios.get(`${process.env.REACT_APP_API_URL}/resume/coverletter`, {
     params: {
       description: data.description,
       // resume: data.resume,

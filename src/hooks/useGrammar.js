@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const fetchPromptResult = ({ queryKey }) => {
   const prompt = queryKey[1];
-  return axios.get(`${process.env.REACT_API_URL}/prompt`, {
+  return axios.get(`${process.env.REACT_APP_API_URL}/prompt`, {
     params: {
       prompt: prompt,
     },

@@ -8,6 +8,7 @@ export const HashtagGenerator = () => {
   const { register, handleSubmit } = useForm();
   const [niche, setNiche] = useState('');
 
+  console.log("ENV", process.env.REACT_APP_API_URL)
   const onSubmit = data => {
     // Adding the selected option to data
     console.log('On Submit', data);
