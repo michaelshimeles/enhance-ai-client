@@ -15,7 +15,7 @@ import {
   Text,
   useColorModeValue,
   useDisclosure,
-  ModalHeader
+  ModalHeader,
 } from '@chakra-ui/react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link as ReachLink } from 'react-router-dom';
@@ -29,7 +29,7 @@ export const NewCard = ({ image, description, title, link, cta, launched }) => {
   return (
     <Link
       as={ReachLink}
-      to={user ? link : ''}
+      to={user && user?.emailVerified === true ? link : ''}
       _hover={{ textDecoration: 'none' }}
       p="1rem"
       onClick={onOpen}
@@ -115,21 +115,29 @@ export const NewCard = ({ image, description, title, link, cta, launched }) => {
           <ModalHeader>Alert 🚨</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text>You need to login with your account!</Text>
+            {user?.emailVerified === false ? (
+              <Text>You need to verify your email!</Text>
+            ) : (
+              <Text>You need to login with your account!</Text>
+            )}
           </ModalBody>
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={onClose}>
               Close
             </Button>
-            <Link
-              as={ReachLink}
-              to="/account"
-              _hover={{ textDecoration: 'none' }}
-            >
-              <Button>
-                <Text>Get Access</Text>
-              </Button>
-            </Link>
+            {user?.emailVerified === true ? (
+              <Link
+                as={ReachLink}
+                to="/account"
+                _hover={{ textDecoration: 'none' }}
+              >
+                <Button>
+                  <Text>Get Access</Text>
+                </Button>
+              </Link>
+            ) : (
+              <></>
+            )}
           </ModalFooter>
         </ModalContent>
       </Modal>

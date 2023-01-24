@@ -11,14 +11,16 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
-  ModalOverlay, Spinner,
+  ModalOverlay,
+  Spinner,
   Text,
-  useDisclosure
+  useDisclosure,
 } from '@chakra-ui/react';
 import {
   EmailAuthProvider,
   reauthenticateWithCredential,
-  signOut
+  signOut,
+  sendEmailVerification,
 } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
@@ -133,7 +135,23 @@ export const ProfileDashboard = () => {
           </Heading>
 
           <Text fontWeight="semibold">{user?.email}</Text>
+          {user?.emailVerified === false && (
+            <Text>Please verify your email to be able to use EnhanceAI</Text>
+          )}
           <Flex direction="column" pt="1rem" gap="0.5rem">
+            {user?.emailVerified === false && (
+              <Button
+                w={['15rem', '15rem', '30rem']}
+                onClick={() => {
+                  sendEmailVerification(auth?.currentUser).then(() => {
+                    // Email verification sent!
+                    console.log('Email sent');
+                  });
+                }}
+              >
+                Resend Verification
+              </Button>
+            )}
             <Button
               w={['15rem', '15rem', '30rem']}
               onClick={() => {

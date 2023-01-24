@@ -9,7 +9,7 @@ export const FixGrammar = () => {
   const [user] = useAuthState(auth);
 
   const navigate = useNavigate();
-  if (!user) {
+  if (!user || user?.emailVerified === false) {
     navigate('/account');
     return (
       <Layout>
