@@ -140,50 +140,44 @@ export const Action = () => {
   return (
     <Layout>
       {mode === 'resetPassword' ? (
-        <Layout>
-          <Flex direction="column" pt="3rem">
-            <Flex justify="center" align="center">
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <Heading textAlign="center">Reset Password</Heading>
-                <Flex direction="column" pt="1rem" gap="0.5rem">
-                  <Input
-                    type="password"
-                    {...register('password', { required: true })}
-                    w={['15rem', '15rem', '30rem']}
-                  />
-                  <Button
-                    w={['15rem', '15rem', '30rem']}
-                    type="submit"
-                    mt="0.5rem"
-                  >
-                    Confirm New Password
-                  </Button>
-                  {errors.password && <Text>Password field is required</Text>}
-                </Flex>
-              </form>
-            </Flex>
+        <Flex direction="column" pt="3rem">
+          <Flex justify="center" align="center">
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Heading textAlign="center">Reset Password</Heading>
+              <Flex direction="column" pt="1rem" gap="0.5rem">
+                <Input
+                  type="password"
+                  {...register('password', { required: true })}
+                  w={['15rem', '15rem', '30rem']}
+                />
+                <Button
+                  w={['15rem', '15rem', '30rem']}
+                  type="submit"
+                  mt="0.5rem"
+                >
+                  Confirm New Password
+                </Button>
+                {errors.password && <Text>Password field is required</Text>}
+              </Flex>
+            </form>
           </Flex>
-        </Layout>
+        </Flex>
       ) : mode === 'recoverEmail' ? (
-        <Layout>
-          <Flex direction="column" pt="3rem">
-            <Flex justify="center" align="center">
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <Heading textAlign="center">Recover Email</Heading>
-              </form>
-            </Flex>
+        <Flex direction="column" pt="3rem">
+          <Flex justify="center" align="center">
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Heading textAlign="center">Recover Email</Heading>
+            </form>
           </Flex>
-        </Layout>
+        </Flex>
       ) : (
-        <Layout>
-          <Flex direction="column" pt="3rem">
-            <Flex justify="center" align="center">
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <Heading textAlign="center">Reset Password</Heading>
-              </form>
-            </Flex>
+        <Flex direction="column" pt="3rem">
+          <Flex justify="center" align="center">
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Heading textAlign="center">Reset Password</Heading>
+            </form>
           </Flex>
-        </Layout>
+        </Flex>
       )}
     </Layout>
   );
