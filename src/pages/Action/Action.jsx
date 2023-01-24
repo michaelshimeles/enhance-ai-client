@@ -26,7 +26,6 @@ import { useQuery } from '../../utils/useQuery';
 
 export const Action = () => {
   const query = useQuery();
-
   // eslint-disable-next-line
   //mode, actionCode, continueUrl, lang
   const mode = query.get('mode');
@@ -194,8 +193,7 @@ export const Action = () => {
                 </CardHeader>
                 <CardBody>
                   <Text>
-                    Congratulations, your email address has been successfully
-                    verified and is now ready for use.
+                    Click on the "Verify" button to verify your account
                   </Text>
                 </CardBody>
                 <CardFooter>
@@ -204,10 +202,11 @@ export const Action = () => {
                       type="submit"
                       colorScheme="blue"
                       onClick={() => {
+                        window.location.reload(false);
                         toast({
                           title: 'Verification worked',
                           description:
-                            'You have been verified, please click on "Go Home',
+                            'You have been verified, please click on "Go Home"',
                           status: 'success',
                           isClosable: true,
                         });

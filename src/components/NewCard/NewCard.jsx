@@ -23,17 +23,16 @@ import { Link as ReachLink } from 'react-router-dom';
 import { auth } from '../../Firebase';
 import { sendEmailVerification } from 'firebase/auth';
 
-export const NewCard = ({ image, description, title, link, cta, launched }) => {
+export const NewCard = ({ image, description, title, link, cta, launched, emailVerified }) => {
   const bgColor = useColorModeValue('white', 'blackAlpha.700');
   const [user] = useAuthState(auth);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
 
-  console.log("Email", user?.emailVerified)
   return (
     <Link
       as={ReachLink}
-      to={user && user?.emailVerified === true ? link : ''}
+      to={user && (user?.emailVerified === true || emailVerified) ? link : ''}
       _hover={{ textDecoration: 'none' }}
       p="1rem"
       onClick={onOpen}

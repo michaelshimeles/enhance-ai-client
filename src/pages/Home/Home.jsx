@@ -15,11 +15,31 @@ import { NewCard } from '../../components/NewCard/NewCard';
 import { fixGrammar } from '../../info/FixGrammar';
 import { igCaption } from '../../info/InstagramCaptions';
 import { resumeBuilder } from '../../info/ResumeBuilder';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../Firebase';
+// import { useEffect } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
 
 export const Home = () => {
+  const [user] = useAuthState(auth);
+
+  console.log(user);
+  if (user === undefined) {
+    window.location.reload();
+  }
+
+  onAuthStateChanged(auth, currentUser => {
+    console.log("Current", currentUser);
+  });
   return (
     <Layout>
-      <Flex direction="column" justify="center" align="center" w="full" wrap="wrap">
+      <Flex
+        direction="column"
+        justify="center"
+        align="center"
+        w="full"
+        wrap="wrap"
+      >
         <HeroSection />
         <Hide below="lg">
           <Flex
@@ -36,6 +56,7 @@ export const Home = () => {
               image={igCaption.image}
               launched={igCaption.launched}
               link={igCaption.link}
+              emailVerified={user?.emailVerified}
             />
             <NewCard
               title={fixGrammar.title}
@@ -44,6 +65,7 @@ export const Home = () => {
               image={fixGrammar.image}
               launched={fixGrammar.launched}
               link={fixGrammar.link}
+              emailVerified={user?.emailVerified}
             />
             <NewCard
               title={resumeBuilder.title}
@@ -52,6 +74,7 @@ export const Home = () => {
               image={resumeBuilder.image}
               launched={resumeBuilder.launched}
               link={resumeBuilder.link}
+              emailVerified={user?.emailVerified}
             />
           </Flex>
         </Hide>
