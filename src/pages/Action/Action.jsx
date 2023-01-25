@@ -106,8 +106,7 @@ export const Action = () => {
             console.log('Verify Email', resp);
             setTimeout(() => {
               window.location.reload(false);
-              navigate('/');
-            }, 10000);
+            }, 7000);
           })
           .catch(error => {
             // Code is invalid or expired. Ask the user to verify their email address
