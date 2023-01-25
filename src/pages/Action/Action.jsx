@@ -195,7 +195,6 @@ export const Action = () => {
                       type="submit"
                       colorScheme="blue"
                       onClick={() => {
-                        window.location.reload(false);
                         toast({
                           title: 'Verification worked',
                           description:
@@ -203,6 +202,7 @@ export const Action = () => {
                           status: 'success',
                           isClosable: true,
                         });
+                        window.location.reload(false);
                       }}
                     >
                       Verify
