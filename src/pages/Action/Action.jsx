@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
+  Spinner,
 } from '@chakra-ui/react';
 import {
   applyActionCode,
@@ -26,6 +27,7 @@ import { useQuery } from '../../utils/useQuery';
 
 export const Action = () => {
   const query = useQuery();
+  const [loader, setLoader] = useState(false);
   // eslint-disable-next-line
   //mode, actionCode, continueUrl, lang
   const mode = query.get('mode');
@@ -104,9 +106,11 @@ export const Action = () => {
         applyActionCode(auth, oobCode)
           .then(resp => {
             console.log('Verify Email', resp);
+            setLoader(true)
             setTimeout(() => {
               window.location.reload(false);
-            }, 5000);
+            }, 4000);
+            setLoader(false)
           })
           .catch(error => {
             // Code is invalid or expired. Ask the user to verify their email address
@@ -177,6 +181,7 @@ export const Action = () => {
                 </CardFooter>
               </Card>
             </form>
+            {loader && <Spinner size="lg" />}
           </Flex>
         </Flex>
       ) : mode === 'verifyEmail' ? (
