@@ -106,7 +106,7 @@ export const Action = () => {
             console.log('Verify Email', resp);
             setTimeout(() => {
               window.location.reload(false);
-            }, 7000);
+            }, 5000);
           })
           .catch(error => {
             // Code is invalid or expired. Ask the user to verify their email address
@@ -200,8 +200,7 @@ export const Action = () => {
                       onClick={() => {
                         toast({
                           title: 'Verification worked',
-                          description:
-                            'You have been verified, please click on "Go Home"',
+                          description: 'Wait 5 seconds and then click Go Home',
                           status: 'success',
                           isClosable: true,
                         });
