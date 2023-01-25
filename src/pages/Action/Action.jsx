@@ -19,7 +19,7 @@ import {
 } from 'firebase/auth';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/Layout/Layout';
 import { auth } from '../../Firebase';
 import { useQuery } from '../../utils/useQuery';
@@ -32,7 +32,7 @@ export const Action = () => {
   const oobCode = query.get('oobCode');
   const continueUrl = query.get('continueUrl');
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const toast = useToast();
 
   const {
@@ -106,6 +106,7 @@ export const Action = () => {
           .then(resp => {
             console.log('Verify Email', resp);
             window.location.reload(false);
+            navigate("/")
           })
           .catch(error => {
             // Code is invalid or expired. Ask the user to verify their email address
