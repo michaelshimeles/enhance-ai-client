@@ -89,7 +89,6 @@ export const Action = () => {
               .then(resp => {
                 // Password reset confirmation sent. Ask user to check their email.
                 console.log('Recover Password reset confirmation sent', resp);
-                
               })
               .catch(error => {
                 // Error encountered while sending password reset code.
@@ -105,8 +104,10 @@ export const Action = () => {
         applyActionCode(auth, oobCode)
           .then(resp => {
             console.log('Verify Email', resp);
-            window.location.reload(false);
-            navigate("/")
+            setTimeout(() => {
+              window.location.reload(false);
+              navigate('/');
+            }, 10000);
           })
           .catch(error => {
             // Code is invalid or expired. Ask the user to verify their email address
