@@ -23,14 +23,12 @@ import { onAuthStateChanged } from 'firebase/auth';
 export const Home = () => {
   const [user] = useAuthState(auth);
 
-  console.log(user);
-  if (user === undefined) {
-    window.location.reload();
-  }
-
   onAuthStateChanged(auth, currentUser => {
-    console.log("Current", currentUser);
+    if (currentUser === undefined) {
+      window.location.reload();
+    }
   });
+
   return (
     <Layout>
       <Flex
