@@ -32,7 +32,7 @@ export const NewCard = ({ image, description, title, link, cta, launched, emailV
   return (
     <Link
       as={ReachLink}
-      to={user && (user?.emailVerified === true || emailVerified) ? link : ''}
+      to={user && (user?.emailVerified === true) ? link : ''}
       _hover={{ textDecoration: 'none' }}
       p="1rem"
       onClick={onOpen}

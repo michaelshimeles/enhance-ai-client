@@ -33,7 +33,6 @@ import { useForm } from 'react-hook-form';
 import { auth, db } from '../../Firebase';
 
 export const ProfileDashboard = () => {
-  const [profileInfo, setProfileInfo] = useState({});
   const [user, loading] = useAuthState(auth);
   // eslint-disable-next-line
   const [emailChange, setEmailChange] = useState(false);
@@ -97,7 +96,6 @@ export const ProfileDashboard = () => {
     const getUserInfo = async userId => {
       getDoc(doc(db, 'users', userId))
         .then(resp => {
-          setProfileInfo(resp.data());
           setEmailChange(false);
         })
         .catch(err => {
@@ -130,9 +128,7 @@ export const ProfileDashboard = () => {
           pt="2rem"
           gap="0.5rem"
         >
-          <Heading>
-            Welcome {profileInfo?.firstName} {profileInfo?.lastName}
-          </Heading>
+          <Heading>Welcome</Heading>
 
           <Text fontWeight="semibold">{user?.email}</Text>
           {user?.emailVerified === false && (

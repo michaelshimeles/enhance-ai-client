@@ -6,7 +6,7 @@ import {
   Link,
   Show,
   Text,
-  VStack,
+  VStack
 } from '@chakra-ui/react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { HeroSection } from '../../components/HeroSection/HeroSection';
@@ -15,19 +15,9 @@ import { NewCard } from '../../components/NewCard/NewCard';
 import { fixGrammar } from '../../info/FixGrammar';
 import { igCaption } from '../../info/InstagramCaptions';
 import { resumeBuilder } from '../../info/ResumeBuilder';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../../Firebase';
-// import { useEffect } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
 
 export const Home = () => {
-  const [user] = useAuthState(auth);
 
-  onAuthStateChanged(auth, currentUser => {
-    if (currentUser === undefined) {
-      window.location.reload();
-    }
-  });
 
   return (
     <Layout>
@@ -54,7 +44,6 @@ export const Home = () => {
               image={igCaption.image}
               launched={igCaption.launched}
               link={igCaption.link}
-              emailVerified={user?.emailVerified}
             />
             <NewCard
               title={fixGrammar.title}
@@ -63,7 +52,6 @@ export const Home = () => {
               image={fixGrammar.image}
               launched={fixGrammar.launched}
               link={fixGrammar.link}
-              emailVerified={user?.emailVerified}
             />
             <NewCard
               title={resumeBuilder.title}
@@ -72,7 +60,6 @@ export const Home = () => {
               image={resumeBuilder.image}
               launched={resumeBuilder.launched}
               link={resumeBuilder.link}
-              emailVerified={user?.emailVerified}
             />
           </Flex>
         </Hide>
