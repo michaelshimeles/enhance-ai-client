@@ -9,7 +9,6 @@ export const HashtagGenerator = () => {
   const [niche, setNiche] = useState('');
 
   const onSubmit = data => {
-    // Adding the selected option to data
     setNiche(data);
   };
 
