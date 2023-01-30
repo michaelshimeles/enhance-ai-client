@@ -6,7 +6,7 @@ import {
   Link,
   Show,
   Text,
-  VStack
+  VStack,
 } from '@chakra-ui/react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { HeroSection } from '../../components/HeroSection/HeroSection';
@@ -17,8 +17,6 @@ import { igCaption } from '../../info/InstagramCaptions';
 import { resumeBuilder } from '../../info/ResumeBuilder';
 
 export const Home = () => {
-
-
   return (
     <Layout>
       <Flex

@@ -1,7 +1,6 @@
 import { Flex, Hide, Show, Heading } from '@chakra-ui/react';
 import Typewriter from 'typewriter-effect';
-import './HeroSection.scss';
-
+import './Hero.scss';
 export const HeroSection = () => {
   return (
     <Flex justify="center" align="center" pt="2rem">
@@ -15,7 +14,9 @@ export const HeroSection = () => {
         />
       </Hide>
       <Show below="lg">
-        <Heading pb="2rem" size="3xl">EnhanceAI</Heading>
+        <Heading pb="2rem" size="3xl">
+          EnhanceAI
+        </Heading>
       </Show>
     </Flex>
   );

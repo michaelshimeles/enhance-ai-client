@@ -9,6 +9,7 @@ import { PrivacyPolicy } from './pages/PrivacyPolicy/PrivacyPolicy';
 import { ProfileDashboard } from './pages/ProfileDashboard/ProfileDashboard';
 import { Action } from './pages/Action/Action';
 import { ResumeBuilder } from './pages/ResumeBuilder/ResumeBuilder';
+import { Feedback } from './pages/Feedback/Feedback';
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="/dashboard" element={<ProfileDashboard />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/action" element={<Action />} />
+          <Route path="/feedback" element={<Feedback />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </BrowserRouter>

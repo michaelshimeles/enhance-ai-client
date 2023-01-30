@@ -8,13 +8,14 @@ import {
   Progress,
   Text,
 } from '@chakra-ui/react';
+import { useForm } from 'react-hook-form';
+
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
 } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../Firebase';
 import { Layout } from '../Layout/Layout';

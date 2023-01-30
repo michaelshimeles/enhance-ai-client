@@ -35,6 +35,9 @@ export const NavBar = () => {
                   alt="profile pic"
                 />
               </Link>
+              <Link href="/feedback" _hover={{ textDecoration: 'none' }}>
+                <Button variant="ghost">Feedback</Button>
+              </Link>
             </Flex>
           )}
           <ColorModeSwitcher />
