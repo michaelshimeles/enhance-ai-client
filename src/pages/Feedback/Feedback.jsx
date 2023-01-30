@@ -6,6 +6,7 @@ import {
   Heading,
   Input,
   Textarea,
+  useToast,
 } from '@chakra-ui/react';
 import emailjs from '@emailjs/browser';
 import { useForm } from 'react-hook-form';
@@ -16,7 +17,9 @@ export const Feedback = () => {
     register,
     handleSubmit,
     // formState: { errors },
+    reset,
   } = useForm({});
+  const toast = useToast();
 
   const sendEmail = formData => {
     emailjs
@@ -34,6 +37,7 @@ export const Feedback = () => {
           console.log(error.text);
         }
       );
+    reset();
   };
 
   return (
@@ -85,7 +89,21 @@ export const Feedback = () => {
                 id="feedback"
               />
             </Box>
-            <Button w={['15rem', '15rem', '30rem']} type="submit" mt="0.5rem">
+            <Button
+              w={['15rem', '15rem', '30rem']}
+              type="submit"
+              mt="0.5rem"
+              onClick={() => {
+                toast({
+                  title: 'Feedback Sent.',
+                  description:
+                    "We've received your feedback. Thank you very much",
+                  status: 'success',
+                  duration: 9000,
+                  isClosable: true,
+                });
+              }}
+            >
               Submit
             </Button>
           </Flex>
