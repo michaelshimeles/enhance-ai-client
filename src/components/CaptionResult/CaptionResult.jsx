@@ -2,7 +2,7 @@ import { Text, Card, CardBody, CardFooter, Button, Divider } from '@chakra-ui/re
 
 export const CaptionResult = ({ result }) => {
   return (
-    <Card align="center" w="70%">
+    <Card align="center" w="100%">
       <CardBody>
         <Text>{result}</Text>
       </CardBody>

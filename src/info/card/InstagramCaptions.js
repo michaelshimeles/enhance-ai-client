@@ -1,4 +1,4 @@
-import ig from '../assets/images/ig.jpg';
+import ig from '../../assets/images/ig.jpg';
 
 export const igCaption = {
   title: 'Caption Generator',

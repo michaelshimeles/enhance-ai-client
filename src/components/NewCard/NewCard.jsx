@@ -56,7 +56,7 @@ export const NewCard = ({ image, description, title, link, cta, launched, emailV
             alt="Article"
           />
 
-          <Box p={6} bgColor={bgColor} borderBottomRadius="5px">
+          <Box p={6} bgColor={bgColor} borderBottomRadius="5px" minH="200px">
             <Box>
               <chakra.span
                 fontSize="xs"

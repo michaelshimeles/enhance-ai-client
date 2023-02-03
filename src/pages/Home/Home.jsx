@@ -1,20 +1,22 @@
 import {
   Button,
   Flex,
+  Heading,
   Hide,
-  HStack,
   Link,
   Show,
   Text,
   VStack,
 } from '@chakra-ui/react';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaGithub, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { HeroSection } from '../../components/HeroSection/HeroSection';
 import { Layout } from '../../components/Layout/Layout';
 import { NewCard } from '../../components/NewCard/NewCard';
-import { fixGrammar } from '../../info/FixGrammar';
-import { igCaption } from '../../info/InstagramCaptions';
-import { resumeBuilder } from '../../info/ResumeBuilder';
+import Testimonials from '../../components/Testimonials/Testimonials';
+import { fixGrammar } from '../../info/card/FixGrammar';
+import { igCaption } from '../../info/card/InstagramCaptions';
+import { resumeBuilder } from '../../info/card/ResumeBuilder';
+import { testimonials } from '../../info/testimonials/testimonials';
 
 export const Home = () => {
   return (
@@ -34,7 +36,16 @@ export const Home = () => {
             gap="1rem"
             pt="3rem"
             flexWrap="wrap"
+            w="90%"
           >
+            {/* <NewCard
+              title={gptZero.title}
+              description={gptZero.description}
+              cta={gptZero.cta}
+              image={gptZero.image}
+              launched={gptZero.launched}
+              link={gptZero.link}
+            /> */}
             <NewCard
               title={igCaption.title}
               description={igCaption.description}
@@ -60,6 +71,23 @@ export const Home = () => {
               link={resumeBuilder.link}
             />
           </Flex>
+          <VStack pt="4rem">
+            <Heading textAlign="center" pb="2rem">
+              What People Have To Say
+            </Heading>
+            {testimonials.map((testimonial, index) => {
+              return (
+                <Flex py="1rem" key={testimonial.name}>
+                  <Testimonials
+                    name={testimonial.name}
+                    job={testimonial.job}
+                    testimonial={testimonial.testimonial}
+                    image={testimonial.image}
+                  />
+                </Flex>
+              );
+            })}
+          </VStack>
         </Hide>
         <Show below="lg">
           <Flex
@@ -69,6 +97,14 @@ export const Home = () => {
             pt="3rem"
             flexWrap="wrap"
           >
+            {/* <NewCard
+              title={gptZero.title}
+              description={gptZero.description}
+              cta={gptZero.cta}
+              image={gptZero.image}
+              launched={gptZero.launched}
+              link={gptZero.link}
+            /> */}
             <NewCard
               title={igCaption.title}
               description={igCaption.description}
@@ -94,10 +130,27 @@ export const Home = () => {
               link={resumeBuilder.link}
             />
           </Flex>
+          <VStack pt="4rem">
+            <Heading textAlign="center" pb="2rem">
+              What People Have To Say
+            </Heading>
+            {testimonials.map((testimonial, index) => {
+              return (
+                <Flex py="0.75rem" key={testimonial.name}>
+                  <Testimonials
+                    name={testimonial.name}
+                    job={testimonial.job}
+                    testimonial={testimonial.testimonial}
+                    image={testimonial.image}
+                  />
+                </Flex>
+              );
+            })}
+          </VStack>
         </Show>
-        <VStack pt="3rem" mb="2rem">
+        <VStack pt="3rem" mb="5rem">
           <Text fontWeight="bold">Connect with me</Text>
-          <HStack>
+          <Flex justify="center" align="center" wrap="wrap" gap="1rem" pt="0.5rem">
             <Link
               isExternal
               href="https://github.com/michaelshimeles"
@@ -117,7 +170,25 @@ export const Home = () => {
                 LinkedIn
               </Button>
             </Link>
-          </HStack>
+            <Link
+              isExternal
+              href="https://www.twitter.com/mikeshimeles/"
+              _hover={{ textDecoration: 'none' }}
+            >
+              <Button colorScheme="facebook" leftIcon={<FaTwitter />}>
+                Twitter
+              </Button>
+            </Link>
+            <Link
+              isExternal
+              href="https://www.instagram.com/michaelshimeles/"
+              _hover={{ textDecoration: 'none' }}
+            >
+              <Button colorScheme="facebook" leftIcon={<FaInstagram />}>
+                Instagram
+              </Button>
+            </Link>
+          </Flex>
         </VStack>
       </Flex>
     </Layout>

@@ -10,6 +10,7 @@ import { ProfileDashboard } from './pages/ProfileDashboard/ProfileDashboard';
 import { Action } from './pages/Action/Action';
 import { ResumeBuilder } from './pages/ResumeBuilder/ResumeBuilder';
 import { Feedback } from './pages/Feedback/Feedback';
+import GPTZero from './pages/GPTZero/GPTZero';
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ function App() {
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/action" element={<Action />} />
           <Route path="/feedback" element={<Feedback />} />
+          <Route path="/gpt-zero" element={<GPTZero />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </BrowserRouter>

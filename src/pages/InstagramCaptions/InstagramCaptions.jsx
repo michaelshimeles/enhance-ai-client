@@ -7,7 +7,7 @@ import {
   Tab,
   TabPanel,
   Box,
-  Progress
+  Progress,
 } from '@chakra-ui/react';
 import { CaptionForm } from '../../components/CaptionForm/CaptionForm';
 import { Layout } from '../../components/Layout/Layout';
