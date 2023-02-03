@@ -134,7 +134,7 @@ export const Home = () => {
             <Heading textAlign="center" pb="2rem">
               What People Have To Say
             </Heading>
-            {testimonials.map((testimonial, index) => {
+            {testimonials.map((testimonial) => {
               return (
                 <Flex py="0.75rem" key={testimonial.name}>
                   <Testimonials
