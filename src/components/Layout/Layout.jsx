@@ -16,7 +16,7 @@ export const Layout = ({ children }) => {
       }}
     >
       <Flex justify="center" align="center" py="0.35rem" bgColor="blue.900" w="100%">
-        <Text textAlign="center" fontSize="xs" fontWeight="bold">
+        <Text textAlign="center" fontSize="xs" fontWeight="bold" color="white">
           New features and upgrades coming soon! 🚀
         </Text>
       </Flex>
