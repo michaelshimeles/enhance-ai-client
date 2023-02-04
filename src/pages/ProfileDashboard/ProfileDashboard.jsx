@@ -154,7 +154,7 @@ export const ProfileDashboard = () => {
           gap="0.5rem"
         >
           <Text fontSize="3xl" as="b">
-            Welcome {name.firstName} {name.lastName}
+            Welcome {name?.firstName} {name?.lastName}
           </Text>
           <Text fontWeight="semibold">{user?.email}</Text>
           {user?.emailVerified === false && (
