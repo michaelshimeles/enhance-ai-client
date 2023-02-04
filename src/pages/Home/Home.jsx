@@ -5,8 +5,7 @@ import {
   Hide,
   Link,
   Show,
-  Text,
-  VStack,
+  Text, VStack
 } from '@chakra-ui/react';
 import { FaGithub, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { HeroSection } from '../../components/HeroSection/HeroSection';
@@ -131,10 +130,10 @@ export const Home = () => {
             />
           </Flex>
           <VStack pt="4rem">
-            <Heading textAlign="center" pb="2rem">
+            <Heading textAlign="center" fontSize={["2xl", "2xl", "4xl"]} pb="2rem">
               What People Have To Say
             </Heading>
-            {testimonials.map((testimonial) => {
+            {testimonials.map(testimonial => {
               return (
                 <Flex py="0.75rem" key={testimonial.name}>
                   <Testimonials
@@ -150,7 +149,13 @@ export const Home = () => {
         </Show>
         <VStack pt="3rem" mb="5rem">
           <Text fontWeight="bold">Connect with me</Text>
-          <Flex justify="center" align="center" wrap="wrap" gap="1rem" pt="0.5rem">
+          <Flex
+            justify="center"
+            align="center"
+            wrap="wrap"
+            gap="1rem"
+            pt="0.5rem"
+          >
             <Link
               isExternal
               href="https://github.com/michaelshimeles"

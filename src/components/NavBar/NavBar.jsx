@@ -5,7 +5,8 @@ import {
   Flex,
   Image,
   Link,
-  Text
+  Text,
+  Show,
 } from '@chakra-ui/react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import logo from '../../assets/logo/logo.png';
@@ -32,13 +33,17 @@ export const NavBar = () => {
           )}
           {user && (
             <Flex justify="center" align="center" gap="1rem">
-              <Badge colorScheme="green">Free Account</Badge>
+              <Show above="sm">
+                <Badge colorScheme="green">Free Account</Badge>
+              </Show>
               <Link href="/dashboard" _hover={{ textDecoration: 'none' }}>
                 <Avatar w="2rem" h="2rem" />
               </Link>
-              <Link href="/feedback" _hover={{ textDecoration: 'none' }}>
-                <Button variant="ghost">Feedback</Button>
-              </Link>
+              <Show above="sm">
+                <Link href="/feedback" _hover={{ textDecoration: 'none' }}>
+                  <Button variant="ghost">Feedback</Button>
+                </Link>
+              </Show>
             </Flex>
           )}
           <ColorModeSwitcher />

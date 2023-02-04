@@ -9,7 +9,7 @@ function Testimonials({ name, job, image, testimonial}) {
       direction="column"
       justify="center"
       align="center"
-      w={['20rem','30rem', '40rem']}
+      w={['15rem','30rem', '40rem']}
       gap="0.25rem"
       rounded="2xl"
       boxShadow="2xl"
