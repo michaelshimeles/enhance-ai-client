@@ -14,7 +14,7 @@ import {
   Spinner,
   Text,
   useDisclosure,
-  useToast
+  useToast,
 } from '@chakra-ui/react';
 import {
   EmailAuthProvider,
@@ -39,7 +39,7 @@ export const ProfileDashboard = () => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [name, setName] = useState({});
-  const toast = useToast()
+  const toast = useToast();
 
   const OverlayOne = () => (
     <ModalOverlay
@@ -79,10 +79,10 @@ export const ProfileDashboard = () => {
           })
           .catch(error => {
             // An error occurred
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log('ErrorCode Change Email', errorCode);
-            console.log('ErrorMessage Change Email', errorMessage);
+            const errorCode = error.code
+            const errorMessage = error.message
+            console.log('ErrorCode Change Email', errorCode)
+            console.log('ErrorMessage Change Email', errorMessage)
 
             // ...
           });
@@ -101,6 +101,7 @@ export const ProfileDashboard = () => {
     await updateDoc(userRef, {
       firstName: data?.firstName,
       lastName: data?.lastName,
+      // email: userInfo?.email,
     });
     setName({
       firstName: data?.firstName,
@@ -108,12 +109,13 @@ export const ProfileDashboard = () => {
     });
     toast({
       title: `Name Successfully Changed`,
-      position: "top",
+      position: 'top',
       isClosable: true,
       status: 'success',
-    })
+    });
   };
 
+  // Change email
   useEffect(() => {
     const getUserInfo = async userId => {
       getDoc(doc(db, 'users', userId))
