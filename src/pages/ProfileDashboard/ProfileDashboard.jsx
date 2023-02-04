@@ -3,7 +3,6 @@ import {
   Flex,
   FormControl,
   FormLabel,
-  Heading,
   Input,
   Modal,
   ModalBody,
@@ -15,19 +14,20 @@ import {
   Spinner,
   Text,
   useDisclosure,
+  useToast
 } from '@chakra-ui/react';
 import {
   EmailAuthProvider,
   reauthenticateWithCredential,
-  signOut,
   sendEmailVerification,
+  signOut,
 } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/Layout/Layout';
 // eslint-disable-next-line
 import { onAuthStateChanged, updateEmail } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { auth, db } from '../../Firebase';
@@ -38,6 +38,8 @@ export const ProfileDashboard = () => {
   const [emailChange, setEmailChange] = useState(false);
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [name, setName] = useState({});
+  const toast = useToast()
 
   const OverlayOne = () => (
     <ModalOverlay
@@ -54,13 +56,12 @@ export const ProfileDashboard = () => {
     formState: { errors },
   } = useForm();
 
+  const { register: registerName, handleSubmit: handleNameChange } = useForm();
+
   // eslint-disable-next-line
   const userInfo = auth.currentUser;
 
   const onSubmit = data => {
-    console.log(data);
-    // console.log('auth.currentUser.email', auth.currentUser.email);
-
     const credential = EmailAuthProvider.credential(
       auth.currentUser.email,
       data.password
@@ -92,10 +93,32 @@ export const ProfileDashboard = () => {
       });
   };
 
+  // const userRef = doc(db, 'users', userInfo?.uid);
+
+  const onNameChange = async data => {
+    const userRef = doc(db, 'users', userInfo?.uid);
+    console.log('DATA', data);
+    await updateDoc(userRef, {
+      firstName: data?.firstName,
+      lastName: data?.lastName,
+    });
+    setName({
+      firstName: data?.firstName,
+      lastName: data?.lastName,
+    });
+    toast({
+      title: `Name Successfully Changed`,
+      position: "top",
+      isClosable: true,
+      status: 'success',
+    })
+  };
+
   useEffect(() => {
     const getUserInfo = async userId => {
       getDoc(doc(db, 'users', userId))
         .then(resp => {
+          setName(resp.data());
           setEmailChange(false);
         })
         .catch(err => {
@@ -130,13 +153,37 @@ export const ProfileDashboard = () => {
           pt="2rem"
           gap="0.5rem"
         >
-          <Heading>Welcome</Heading>
-
+          <Text fontSize="3xl" as="b">
+            Welcome {name.firstName} {name.lastName}
+          </Text>
           <Text fontWeight="semibold">{user?.email}</Text>
           {user?.emailVerified === false && (
             <Text>Please verify your email to be able to use EnhanceAI</Text>
           )}
           <Flex direction="column" pt="1rem" gap="0.5rem">
+            <form onSubmit={handleNameChange(onNameChange)}>
+              <Flex direction="column" gap="0.5rem">
+                <Input
+                  defaultValue={name?.firstName}
+                  type="text"
+                  {...registerName('firstName')}
+                  w={['15rem', '15rem', '30rem']}
+                />
+                <Input
+                  defaultValue={name?.lastName}
+                  type="text"
+                  {...registerName('lastName')}
+                  w={['15rem', '15rem', '30rem']}
+                />
+                <Button
+                  type="submit"
+                  variant="outline"
+                  w={['15rem', '15rem', '30rem']}
+                >
+                  Update Name
+                </Button>
+              </Flex>
+            </form>
             {user?.emailVerified === false && (
               <Button
                 w={['15rem', '15rem', '30rem']}
