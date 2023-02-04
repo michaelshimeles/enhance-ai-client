@@ -2,7 +2,7 @@ import profileImage from '../../assets/images/mahi.jpg';
 
 export const testimonials = [
   {
-    name: 'Mahlet Yordanos',
+    name: 'Mahi',
     job: 'SMM @ The Influence Agency',
     testimonial: `I'm a social media manager and EnhanceAI truly made me work so much
     faster! There have been too many times where I've spent WAY too much
