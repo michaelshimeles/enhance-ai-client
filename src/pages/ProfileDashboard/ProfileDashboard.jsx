@@ -110,9 +110,11 @@ export const ProfileDashboard = () => {
 
   if (loading && !user) {
     return (
-      <Flex justify="center" align="center" h="50vh">
-        <Spinner />
-      </Flex>
+      <Layout>
+        <Flex justify="center" align="center" h="50vh">
+          <Spinner />
+        </Flex>
+      </Layout>
     );
   } else if (!loading && !user) {
     return navigate('/account');

@@ -4,8 +4,8 @@ import {
   Heading,
   Hide,
   Link,
-  Show,
-  Text, VStack
+  Show, Text,
+  VStack
 } from '@chakra-ui/react';
 import { FaGithub, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { HeroSection } from '../../components/HeroSection/HeroSection';
@@ -18,6 +18,7 @@ import { resumeBuilder } from '../../info/card/ResumeBuilder';
 import { testimonials } from '../../info/testimonials/testimonials';
 
 export const Home = () => {
+
   return (
     <Layout>
       <Flex
@@ -130,7 +131,11 @@ export const Home = () => {
             />
           </Flex>
           <VStack pt="4rem">
-            <Heading textAlign="center" fontSize={["2xl", "2xl", "4xl"]} pb="2rem">
+            <Heading
+              textAlign="center"
+              fontSize={['2xl', '2xl', '4xl']}
+              pb="2rem"
+            >
               What People Have To Say
             </Heading>
             {testimonials.map(testimonial => {

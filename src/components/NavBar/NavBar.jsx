@@ -5,8 +5,7 @@ import {
   Flex,
   Image,
   Link,
-  Text,
-  Show,
+  Show, Text
 } from '@chakra-ui/react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import logo from '../../assets/logo/logo.png';
@@ -16,7 +15,6 @@ import { auth } from '../../Firebase';
 export const NavBar = () => {
   const [user] = useAuthState(auth);
   // const bgColor = useColorModeValue('white', 'blackAlpha.700');
-
   return (
     <Flex justifyContent="center" alignItems="center" w="100%" py="1rem">
       <Flex justifyContent="space-between" alignItems="center" w="80%">
