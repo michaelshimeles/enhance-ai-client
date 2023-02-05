@@ -62,7 +62,7 @@ export const LoginForm = () => {
       });
   };
 
-  const handleForgotEmail = e => {
+  const handleForgotPassword = e => {
     setLoginInfo(e.target.value);
   };
 
@@ -141,7 +141,7 @@ export const LoginForm = () => {
             <ModalBody pb={6}>
               <FormControl>
                 <FormLabel>Email</FormLabel>
-                <Input onChange={handleForgotEmail} placeholder="Email" />
+                <Input onChange={handleForgotPassword} placeholder="Email" />
               </FormControl>
             </ModalBody>
             <ModalFooter>

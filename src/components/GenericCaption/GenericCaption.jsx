@@ -57,7 +57,7 @@ export const GenericCaption = () => {
             id="platform"
           >
             <option value="instagram">Instagram</option>
-            <option value="facebook">facebook</option>
+            <option value="facebook">Facebook</option>
           </Select>
         </Flex>
         <Flex direction="column" justify="center" align="flex-start" w="full">
