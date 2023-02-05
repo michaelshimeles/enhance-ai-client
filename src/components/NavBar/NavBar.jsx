@@ -14,7 +14,7 @@ import { ColorModeSwitcher } from '../../ColorModeSwitcher';
 import { auth } from '../../Firebase';
 
 export const NavBar = () => {
-  const [user, loading] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   // const bgColor = useColorModeValue('white', 'blackAlpha.700');
   return (
     <Flex justifyContent="center" alignItems="center" w="100%" py="1rem">
