@@ -5,7 +5,7 @@ import {
   Image,
   Link,
   Show,
-  Text
+  Text,
 } from '@chakra-ui/react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { BiCoffeeTogo } from 'react-icons/bi';
@@ -15,7 +15,6 @@ import { auth } from '../../Firebase';
 
 export const NavBar = () => {
   const [user] = useAuthState(auth);
-  // const bgColor = useColorModeValue('white', 'blackAlpha.700');
   return (
     <Flex justifyContent="center" alignItems="center" w="100%" py="1rem">
       <Flex justifyContent="space-between" alignItems="center" w="80%">

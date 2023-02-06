@@ -107,11 +107,11 @@ export const Action = () => {
         applyActionCode(auth, oobCode)
           .then(resp => {
             console.log('Verify Email', resp);
-            setLoader(true)
+            setLoader(true);
             setTimeout(() => {
               window.location.reload(false);
             }, 4000);
-            setLoader(false)
+            setLoader(false);
           })
           .catch(error => {
             // Code is invalid or expired. Ask the user to verify their email address
